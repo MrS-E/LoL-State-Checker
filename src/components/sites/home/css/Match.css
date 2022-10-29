@@ -1,0 +1,27 @@
+.c100{
+    border: blue .5vw solid;
+}
+
+.c200{
+    border: red .5vw solid;
+}
+
+.games{
+    margin-top: .5vh;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.summoner{
+    display:flex;
+    justify-content: flex-end;
+    padding-top: 3vh;
+}
+
+.sum_red, .sum_blue{
+    padding-right: 0.75vw ;
+}
+
+.sum{
+    line-height: .25vh;
+}

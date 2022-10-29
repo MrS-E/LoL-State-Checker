@@ -1,0 +1,86 @@
+/*TODO make it slimmer*/
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.popup-inner{
+    position: relative;
+    padding: 3vmin;
+    width: 100%;
+    max-width: 75vw;
+    background-color: white;
+    overflow: scroll;
+    max-height: 80vh;
+}
+.popup-inner .close-btn{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+.main_img{
+    width: 100%;
+    max-width: 75vw;
+    height: 30vh;
+    object-fit: cover;
+    object-position: 100% 15%;
+}
+.main_title{
+    width: 100%;
+    max-width: 75vw;
+    height: 25vh;
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 10%;
+    text-align: center;
+    color: white;
+    font-size: xxx-large;
+    height:10vmin;
+}
+.main_undertitle{
+    width: 100%;
+    max-width: 75vw;
+    height: 25vh;
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 25%;
+    text-align: center;
+    color: white;
+    height:10vmin;
+}
+.skin{
+    width:11vw;
+    margin-bottom: 1vh;
+}
+.row{
+    margin-top: 0.3vh;
+}
+.lore{
+    font-size: small;
+}
+.col-2{
+    margin-right: 0.5vw;
+}
+.spell{
+    width: 5.5vw;
+}
+.spell:hover{
+    cursor: pointer;
+}
+.show_btn{
+    height: 5.5vw;
+    font-size: smaller;
+    margin-left: 1.75vw;
+}

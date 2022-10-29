@@ -1,0 +1,8 @@
+/*TODO Background for Home component*/
+.center{
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
