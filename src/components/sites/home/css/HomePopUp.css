@@ -16,7 +16,7 @@
     max-width: 75vw;
     background-color: white;
     overflow: scroll;
-    max-height: 80vh;
+    max-height: 70vh;
 }
 .popup-inner .close-btn{
     position: absolute;
@@ -34,4 +34,14 @@
 #summoner_name{
     height: 5vw;
     line-height: 5vw;
+}
+.HomePopUp_Matches{
+    justify-content: space-between;
+    display: flex;
+}
+.HomePopUp_WinRate{
+    max-width: 20vw;
+}
+.HomePopUp_MatchHistory{
+    max-width: 55vw;
 }

@@ -5,17 +5,16 @@ import Match from "./Match";
 
 const Matches = (props) => {
     console.log(props.puuid);
-    const url_matchhistory=get_request("match_ids_by_puuid",props.region,"region",[props.puuid,0,5],"query");
+    const url_matchhistory=get_request("match_ids_by_puuid",props.region,"region",[props.puuid,0,props.games],"query");
     console.log(url_matchhistory);
-    const{data, loading, error} = useFetch(url_matchhistory);
-    if(error) console.error(error)
-    if(loading) return <h3>Loading</h3>
+    const{data, loading} = useFetch(url_matchhistory);
+    if(loading) return <h3>Loading</h3>;
     if(data) {
         console.log(data);
         return (
             <div>
                 {data.map((id, i)=>{
-                    return(<Match id={id} region={props.region} puuid={props.puuid}/>);
+                    return(<Match key={i} id={id} region={props.region} summoner={props.summmoner}/>);
                 })}
             </div>
         );
@@ -23,3 +22,4 @@ const Matches = (props) => {
 };
 
 export default Matches;
+//TODO for wincounting with 2d array of match_ids

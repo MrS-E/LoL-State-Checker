@@ -85,22 +85,21 @@ const graph_data = (data) => {
 }
 
 const ChampPopUp = (props) => {
-    const {data, loading, error} = UseFetch(champ + props.champ + ".json");
+    const {data, loading} = UseFetch(champ + props.champ + ".json");
     const [spellName, changeSpellName] = useState("");
     const [spellDesc, changeSpellDesc] = useState("");
     let champion = props.champ;
     if (data) champion = Object.values(data?.data)[0];
     if(props.trigger && data){
-        //FIXME change the useStates at the beginning to standard
         return(
             <div className="popup">
                 <div className="popup-inner">
                     <div>
-                        <button className="close-btn" onClick={() => props.setTrigger(false)}>close</button>
+                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");console.log(spellDesc,spellName)}}>close</button> {/*TODO make close button look nicer*/}
                     </div>
                     <div>
                         <div>
-                            <img className="main_img" src={splash+champion.id+"_0.jpg"}/>
+                            <img className="main_img" alt={"splash_"+champion.id} src={splash+champion.id+"_0.jpg"}/>
                             <h2 className="main_title">{champion.name}</h2>
                             <h3 className="main_undertitle">{champion.title}</h3>
                         </div>
@@ -113,7 +112,7 @@ const ChampPopUp = (props) => {
                                 </div>
                                 <div className="row">
                                     {champion.skins.map((x, i) => {
-                                        return(<div className="col-4" key={i}><img src={splash+champion.id+"_"+x.num+".jpg"} className="skin" alt={x.name}/></div>);
+                                        return(<div className="col-4" key={i}><img src={splash+champion.id+"_"+x.num+".jpg"} className="skin" alt={x.name}/><span className="skin_sub">{x.name}</span></div>);
                                     })}
                                 </div>
                             </div>
@@ -138,12 +137,12 @@ const ChampPopUp = (props) => {
                                 </div>
                                 <div className="row">
                                     <div className="col-2" onClick={() => {changeSpellName(champion.passive.name);changeSpellDesc(champion.passive.description);}}>
-                                        <img className="spell" src={passiv + champion.passive.image.full}/>
+                                        <img className="spell" alt={"spell_"+champion.passive.image.full} src={passiv + champion.passive.image.full}/>
                                     </div>
                                     {champion.spells.map((x,i) => {
                                         return(
                                             <div key={i} className="col-2" onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);}}>
-                                                <img className="spell" src={spell + x.image.full}/>
+                                                <img className="spell" alt={"spell_"+x.image.full} src={spell + x.image.full}/>
                                             </div>
                                         );
                                     })}
@@ -162,7 +161,7 @@ const ChampPopUp = (props) => {
         <div className="popup">
             <div className="popup-inner">
                 <div>
-                    <button className="close-btn" onClick={() => props.setTrigger(false)}>close</button>
+                    <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");console.log(spellDesc,spellName)}}>close</button>
                     <h3>Champion</h3>
                 </div>
                 <div>

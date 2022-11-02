@@ -10,8 +10,14 @@
     margin-top: .5vh;
     padding: 10px;
     border-radius: 25px;
-    display: flex;
+    display:flex;
     justify-content: space-between;
+}
+
+.map{
+    width: 5vw;
+    height: auto;
+    border-radius: 10px;
 }
 
 .summoner{
@@ -30,13 +36,46 @@
 .sum{
     line-height: 1.5vh;
     display: flex;
-    font-size: smaller;
     padding-left: 1.5vw;
-    height: 1.5vh;
+    height: 0.5vh;
+    font-size: 1vh;
+    align-items:center;
 }
 
 .img{
-    width: 1.5vw;
-    height: 1.5vw;
+    width: 0.75vw;
+    height: 0.75vw;
     margin-right: 1vw;
+}
+
+.champ_img{
+    width: 7vh;
+    height: auto;
+    padding-top: 2vh;
+}
+
+.champ_title{
+    text-align: center;
+    width: 10vh;
+}
+
+.champ{
+    padding-left: 8.5vw;
+}
+
+.match_title{
+    width: 20vw;
+}
+
+.match_title p{
+    text-align: left;
+}
+.tk1{ /*TODO make design for multikills*/
+
+}
+.qk1{
+
+}
+.pk1{
+
 }

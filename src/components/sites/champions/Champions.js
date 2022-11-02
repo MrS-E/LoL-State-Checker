@@ -12,7 +12,6 @@ function Champions() {
     const {data, loading, error} = UseFetch(champions); //TODO push fetching of json files to stored values.
     if (loading) return <h1>Loading</h1>;
     if (error) return console.log(error);
-    console.log(data);
     if(data!=null){
     return(
         <>
@@ -28,8 +27,7 @@ function Champions() {
                     );
                 })}
             </div>
-            <ChampPopUp trigger={trigger} champ={champion} setTrigger={changeTrigger}>
-            </ChampPopUp>
+            <ChampPopUp trigger={trigger} champ={champion} setTrigger={changeTrigger}/>
         </>
     );}
 }

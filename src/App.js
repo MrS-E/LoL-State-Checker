@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom';
+//import NavBar from "./components/NavBar";
 import Champions from "./components/sites/champions/Champions";
 import Home from "./components/sites/home/Home";
 import Items from "./components/sites/items/Items";
@@ -9,7 +10,7 @@ function App() {
     return (
     <>
         <BrowserRouter>
-                <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark"> {/*Navbar can't be a component*/}
+                <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
                     <Navbar.Toggle aria-controls="navbarScrools" data-bs-target="#navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav>

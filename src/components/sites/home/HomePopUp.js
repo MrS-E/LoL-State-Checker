@@ -1,24 +1,24 @@
 import React from 'react';
 import './css/HomePopUp.css'
 import useFetch from "../../hooks/useFetch";
-import {get_request} from "../../other/links";
+import {get_region_from_platform, get_request} from "../../other/links";
 import {summoner_icon} from "../../other/links";
 import Matches from "./matches/Matches";
 
-
 const HomePopUp = (props) => {
-    const url = get_request("summoner_by_name", "EUW1", "platform", [props.summoner], "query");
-    const {data, loading, error} = useFetch(url);
+    const url = get_request("summoner_by_name", props.region, "platform", [props.summoner], "query");
+    const {data, loading} = useFetch(url);
+    const games_num=10;
+    const region = get_region_from_platform(props.region);
 
     console.log(url);
-    //if(error) console.error(error);
     if(props.trigger && data){
         const icon = summoner_icon + data.profileIconId + ".png";
         return(
             <div className="popup">
                 <div className="popup-inner">
                     <div>
-                        <button className="close-btn" onClick={() => props.setTrigger(false)}>close</button>
+                        <button className="close-btn" onClick={() => props.setTrigger(false)}>close</button> {/*TODO make close button look nicer*/}
                         <div className="row">
                             <div className="col-1">
                                 <img id="icon" src={icon} className="rounded-circle icon" alt={data.profileIconId}/>
@@ -27,10 +27,18 @@ const HomePopUp = (props) => {
                             <div className="col-11">
                                 <h3 id="summoner_name">{data.name}</h3>
                             </div>
+                            <div>
+                                {/*TODO make graph of the last 10 to 20 games*/}
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <Matches puuid={data.puuid} region="EUROPE"/>
+                    <div className="HomePopUp_Matches">
+                        <div className="HomePopUp_WinRate">
+                            <h1><kbd>how many wins in the last games</kbd></h1> {/*FIXME i have to put wincount in matches, don't know how, but if i use a second request (from an other file) it's too many requests*/}
+                        </div>
+                        <div className="HomePopUp_MatchHistory">
+                            <Matches puuid={data.puuid} summmoner={data.name} region={region} games={games_num}/>
+                        </div>
                     </div>
                 </div>
             </div>

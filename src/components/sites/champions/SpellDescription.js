@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SpellDescription = (props) => {
-    console.log("change", props.name,props.desc)
     let desc = props.desc;
     if (typeof desc === 'string') {
         const re = new RegExp('<.*>');
