@@ -10,12 +10,17 @@
     margin-top: .5vh;
     padding: 10px;
     border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .summoner{
-    display:flex;
-    justify-content: flex-end;
+    justify-content: end;
+    right: 0;
+    margin-right: 0;
+    display: flex;
     padding-top: 3vh;
+    width: 50vw;
 }
 
 .sum_red, .sum_blue{
@@ -23,5 +28,15 @@
 }
 
 .sum{
-    line-height: .25vh;
+    line-height: 1.5vh;
+    display: flex;
+    font-size: smaller;
+    padding-left: 1.5vw;
+    height: 1.5vh;
+}
+
+.img{
+    width: 1.5vw;
+    height: 1.5vw;
+    margin-right: 1vw;
 }
