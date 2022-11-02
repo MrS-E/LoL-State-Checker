@@ -1,92 +1,43 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {get_request} from "../../../other/links";
 import useFetch from "../../../hooks/useFetch";
 import '../css/Match.css'
-import {summoner_icon, icon} from "../../../other/links";
-import {map} from "../../../other/links";
-import ChampPopUp from "../../champions/ChampPopUp";
-import HomePopUp from "../HomePopUp";
+import {summoner_icon} from "../../../other/links";
 
-/*TODO wird irgendwie 4mal ausgeführt*/
 const Match = (props) => {
     const url = get_request("match_by_id",props.region,"region",[props.id],"query");
-    const {data,loading} = useFetch(url);
-    const [champ_trigger, champ_changeTrigger] = useState(false);
-    const [sum_trigger, sum_changeTrigger] = useState(false);
-    const [summonerName_popup, changeSummonerName_popup] = useState("");
-    const queue = require('../../../files/queue.json'); //TODO use later with stored values
+    const {data,loading,error} = useFetch(url);
+    if (error) console.log(error);
     if (loading) return <h6>Loading</h6>;
-    if(data && queue) {
-        const game={
-            summoner_blue: [],
-            summoner_red: [],
-            kda: [],
-            items: [],
-            champion: "",
-            gold: 0,
-            CS: 0,
-            visionScore: 0,
-            className: "c200",
-            triplekill: "",
-            quatrakill: "",
-            pentakill: "",
-
-        }
+    if(data) {
+        let summoner_blue=[];
+        let summoner_red=[];
         for(let x=0;x<data.info.participants.length;x++){
             if(x<5){
-                game.summoner_blue.push([data["info"]["participants"][x]["summonerName"],data["info"]["participants"][x]["profileIcon"]]);
+                summoner_blue.push([data["info"]["participants"][x]["summonerName"],data["info"]["participants"][x]["profileIcon"]]);
             }else if(x<10){
-                game.summoner_red.push([data["info"]["participants"][x]["summonerName"],data["info"]["participants"][x]["profileIcon"]]);
+                summoner_red.push([data["info"]["participants"][x]["summonerName"],data["info"]["participants"][x]["profileIcon"]]);
             }
-            if(data["info"]["participants"][x]["summonerName"]===props.summoner) {
-                if(data["info"]["participants"][x]["win"]===true) game.className="c100";
-                if(data["info"]["participants"][x]["tripleKills"]>0) game.triplekill="tk1";
-                if(data["info"]["participants"][x]["quadraKills"]>0) game.quatrakill="qk1";
-                if(data["info"]["participants"][x]["pentaKills"]>0) game.pentakill="pk1";
-                game.kda.push(data["info"]["participants"][x]["kills"],data["info"]["participants"][x]["deaths"],data["info"]["participants"][x]["assists"]);
-                game.champion = data["info"]["participants"][x]["championName"];
-                game.items.push(data["info"]["participants"][x]["item0"],data["info"]["participants"][x]["item1"],data["info"]["participants"][x]["item2"],data["info"]["participants"][x]["item3"],data["info"]["participants"][x]["item4"],data["info"]["participants"][x]["item5"],data["info"]["participants"][x]["item6"]);
-                game.gold = data["info"]["participants"][x]["goldEarned"];
-                game.CS = (data["info"]["participants"][x]["totalMinionsKilled"])+(data["info"]["participants"][x]["neutralMinionsKilled"]);
-                game.visionScore = data["info"]["participants"][x]["visionScore"];
-            }
-
         }
-        const search = queue.find((qu) => qu.queueId === data.info.queueId);
-        console.log(search)
+        let className = "c100";
+        if(data["info"]["teams"]["1"]["win"]===true){
+            className="c200"
+        }
         return (
-            <>
-                <div className={game.className + " games " + game.triplekill + " " + game.quatrakill + " " + game.pentakill} id={props.id}>
-                    <div className="match_title">
-                        {/*<h6>{data.info.gameMode}</h6>*/}
-                        <h6>{search.description.replace(" games", "").replace("5v5 ", "")}</h6>
-                        <p>{new Date(data.info.gameEndTimestamp).toLocaleDateString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}) /*Date from Unix Timestamp*/}</p>
-                        <img className="map" alt={"map"+data.info.mapId} src={map+"map"+data.info.mapId+".png"}/>
+            <div className={className + " games"} id={props.id}>
+                <div>
+                    <h6>{data.info.gameMode}</h6>
+                    {props.id}
+                </div>
+                <div className="summoner">
+                    <div className="sum_blue">
+                        {summoner_blue.map((x)=>{return(<p className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})}
                     </div>
-                    <div>
-                        {/*TODO Item Build*/}
-                        {/*TODO Gold earned*/}
-                        {/*TODO CS (totalMinionsKilled + neutralMinionsKilled)*/}
-                        {/*TODO visionScore*/}
-                    </div>
-                    <div className="champ">
-                        <img src={icon + game.champion + ".png"} className="rounded-circle icon champ_img" alt={game.champion} onClick={()=>champ_changeTrigger(true)}/>
-                        <div>
-                            <p><strong>KDA</strong> <br/> {game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
-                        </div>
-                    </div>
-                    <div className="summoner">
-                        <div className="sum_blue">
-                            {game.summoner_blue.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_blue"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
-                        </div>
-                        <div className="sum_red">
-                            {game.summoner_red.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_red"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
-                        </div>
+                    <div className="sum_red">
+                        {summoner_red.map((x)=>{return(<p className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})}
                     </div>
                 </div>
-                <ChampPopUp  trigger={champ_trigger} champ={game.champion} setTrigger={champ_changeTrigger}/>
-                <HomePopUp trigger={sum_trigger} setTrigger={sum_changeTrigger} summoner={summonerName_popup} region={props.platform}/>
-            </>
+            </div>
         );
     }
 };
@@ -94,4 +45,3 @@ const Match = (props) => {
 //team 100 blue side
 
 export default Match;
-//https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_6124408693?api_key=RGAPI-31a604c2-66e3-4239-b8ec-00e6acb01ac2
