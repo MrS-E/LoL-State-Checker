@@ -116,13 +116,12 @@ const ChampPopUp = (props) => {
                                     })}
                                 </div>
                             </div>
-                            <div className="col-6">
-                                <div className="row">
+                            <div className="col-6 ">
+                                <div className="row stretch_div">
                                     <button className="col-5 show_btn"
                                             onClick={() => {changeSpellName("Stats");changeSpellDesc(
                                                 <Graph data={graph_data(champion)}/>
-                                            );}}
-                                    >
+                                            );}}>
                                        Stats
                                     </button>
                                     <button className="col-5 show_btn"
@@ -135,7 +134,7 @@ const ChampPopUp = (props) => {
                                         Tips
                                     </button>
                                 </div>
-                                <div className="row">
+                                <div className="row stretch_div spell_div">
                                     <div className="col-2" onClick={() => {changeSpellName(champion.passive.name);changeSpellDesc(champion.passive.description);}}>
                                         <img className="spell" alt={"spell_"+champion.passive.image.full} src={passiv + champion.passive.image.full}/>
                                     </div>

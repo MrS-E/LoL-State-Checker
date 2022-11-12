@@ -26,7 +26,7 @@
     margin-right: 0;
     display: flex;
     padding-top: 3vh;
-    width: 50vw;
+    width: 35vw;
     padding-left: 6vw;
 }
 
@@ -46,14 +46,14 @@
     line-height: 1.5vh;
     display: flex;
     padding-left: 1.5vw;
-    height: 0.5vh;
+    height: 1vh;
     font-size: 1.5vh;
     align-items:center;
 }
 
 .img{
-    width: 1.3vw;
-    height: 1.3vw;
+    width: 1.2vw;
+    height: 1.2vw;
     margin-right: 1vw;
 }
 
