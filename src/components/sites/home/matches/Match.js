@@ -5,12 +5,15 @@ import '../css/Match.css'
 import {summoner_icon, icon} from "../../../other/links";
 import {map} from "../../../other/links";
 import ChampPopUp from "../../champions/ChampPopUp";
+import HomePopUp from "../HomePopUp";
 
 /*TODO wird irgendwie 4mal ausgeführt*/
 const Match = (props) => {
     const url = get_request("match_by_id",props.region,"region",[props.id],"query");
     const {data,loading} = useFetch(url);
     const [champ_trigger, champ_changeTrigger] = useState(false);
+    const [sum_trigger, sum_changeTrigger] = useState(false);
+    const [summonerName_popup, changeSummonerName_popup] = useState("");
     const queue = require('../../../files/queue.json'); //TODO use later with stored values
     if (loading) return <h6>Loading</h6>;
     if(data && queue) {
@@ -56,7 +59,7 @@ const Match = (props) => {
                 <div className={game.className + " games " + game.triplekill + " " + game.quatrakill + " " + game.pentakill} id={props.id}>
                     <div className="match_title">
                         {/*<h6>{data.info.gameMode}</h6>*/}
-                        <h6>{search.description.replace(" games", "")}</h6>
+                        <h6>{search.description.replace(" games", "").replace("5v5 ", "")}</h6>
                         <p>{new Date(data.info.gameEndTimestamp).toLocaleDateString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}) /*Date from Unix Timestamp*/}</p>
                         <img className="map" alt={"map"+data.info.mapId} src={map+"map"+data.info.mapId+".png"}/>
                     </div>
@@ -74,14 +77,15 @@ const Match = (props) => {
                     </div>
                     <div className="summoner">
                         <div className="sum_blue">
-                            {game.summoner_blue.map((x, i)=>{return(<p key={i+"_blue"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})}
+                            {game.summoner_blue.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_blue"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
                         </div>
                         <div className="sum_red">
-                            {game.summoner_red.map((x, i)=>{return(<p key={i+"_red"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})}
+                            {game.summoner_red.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_red"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
                         </div>
                     </div>
                 </div>
                 <ChampPopUp  trigger={champ_trigger} champ={game.champion} setTrigger={champ_changeTrigger}/>
+                <HomePopUp trigger={sum_trigger} setTrigger={sum_changeTrigger} summoner={summonerName_popup} region={props.platform}/>
             </>
         );
     }

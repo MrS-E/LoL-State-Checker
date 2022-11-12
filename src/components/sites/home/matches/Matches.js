@@ -14,7 +14,7 @@ const Matches = (props) => {
         return (
             <div>
                 {data.map((id, i)=>{
-                    return(<Match key={i} id={id} region={props.region} summoner={props.summmoner}/>);
+                    return(<Match key={i} id={id} region={props.region} summoner={props.summmoner} platform={props.platform}/>);
                 })}
             </div>
         );

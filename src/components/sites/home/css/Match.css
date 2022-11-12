@@ -21,12 +21,21 @@
 }
 
 .summoner{ /*TODO  align the same*/
-    justify-content: end;
+    justify-content: start;
     right: 0;
     margin-right: 0;
     display: flex;
     padding-top: 3vh;
     width: 50vw;
+    padding-left: 6vw;
+}
+
+.summoner_point{
+    cursor: pointer;
+}
+
+.summoner_point:hover .sum{
+    color: blue;
 }
 
 .sum_red, .sum_blue{
@@ -38,13 +47,13 @@
     display: flex;
     padding-left: 1.5vw;
     height: 0.5vh;
-    font-size: 1vh;
+    font-size: 1.5vh;
     align-items:center;
 }
 
 .img{
-    width: 0.75vw;
-    height: 0.75vw;
+    width: 1.3vw;
+    height: 1.3vw;
     margin-right: 1vw;
 }
 

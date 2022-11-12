@@ -37,7 +37,7 @@ const HomePopUp = (props) => {
                             <h1><kbd>how many wins in the last games</kbd></h1> {/*FIXME i have to put wincount in matches, don't know how, but if i use a second request (from an other file) it's too many requests*/}
                         </div>
                         <div className="HomePopUp_MatchHistory">
-                            <Matches puuid={data.puuid} summmoner={data.name} region={region} games={games_num}/>
+                            <Matches puuid={data.puuid} summmoner={data.name} region={region} games={games_num} platform={props.region}/>
                         </div>
                     </div>
                 </div>
