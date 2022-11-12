@@ -18,7 +18,7 @@ const HomePopUp = (props) => {
             <div className="popup">
                 <div className="popup-inner">
                     <div>
-                        <button className="close-btn" onClick={() => props.setTrigger(false)}>close</button> {/*TODO make close button look nicer*/}
+                        <button className="close-btn" onClick={() => props.setTrigger(false)}>close</button>
                         <div className="row">
                             <div className="col-1">
                                 <img id="icon" src={icon} className="rounded-circle icon" alt={data.profileIconId}/>

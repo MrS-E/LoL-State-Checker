@@ -24,6 +24,9 @@
     top: 16px;
     right: 16px;
 }
+.close-btn{
+/*TODO make close button look nicer*/
+}
 .main_img{
     width: 100%;
     max-width: 75vw;

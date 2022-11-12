@@ -72,9 +72,9 @@ const Match = (props) => {
                             <p><strong>KDA</strong> <br/> {game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
                         </div>
                     </div>
-                    <div className="summoner"> {/*TODO  align the same*/}
+                    <div className="summoner">
                         <div className="sum_blue">
-                            {game.summoner_blue.map((x, i)=>{return(<p key={i+"_blue"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})} {/*TODO make summoner a little big bigger*/}
+                            {game.summoner_blue.map((x, i)=>{return(<p key={i+"_blue"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})}
                         </div>
                         <div className="sum_red">
                             {game.summoner_red.map((x, i)=>{return(<p key={i+"_red"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})}

@@ -95,7 +95,7 @@ const ChampPopUp = (props) => {
             <div className="popup">
                 <div className="popup-inner">
                     <div>
-                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");console.log(spellDesc,spellName)}}>close</button> {/*TODO make close button look nicer*/}
+                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");console.log(spellDesc,spellName)}}>close</button>
                     </div>
                     <div>
                         <div>

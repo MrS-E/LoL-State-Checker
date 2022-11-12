@@ -23,6 +23,9 @@
     top: 16px;
     right: 16px;
 }
+.close-btn{
+/*TODO make close button look nicer*/
+}
 #icon{
     width: 5vw;
     height: auto;
