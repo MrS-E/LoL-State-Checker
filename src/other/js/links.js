@@ -1,3 +1,4 @@
+import {api_key} from "./key";
 //JSON
 const version = "https://ddragon.leagueoflegends.com/api/versions.json";
 get_version();
@@ -34,7 +35,6 @@ export const queueID = "https://static.developer.riotgames.com/docs/lol/queues.j
 export const map="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/";
 
 //API
-const api_key = "RGAPI-31a604c2-66e3-4239-b8ec-00e6acb01ac2";
 const routing_platform = {
     "BR1":"br1.api.riotgames.com", // Brazil
     "EUN1":"eun1.api.riotgames.com", //EU Nordic & East

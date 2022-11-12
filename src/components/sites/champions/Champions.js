@@ -1,9 +1,9 @@
 import React, {useState} from "react"
-import UseFetch from "../../hooks/useFetch";
+import UseFetch from "../../../hooks/useFetch";
 import './css/Champions.css'
 import ChampPopUp from "./ChampPopUp";
-import {champions} from "../../other/links";
-import {icon} from "../../other/links";
+import {champions} from "../../../other/js/links";
+import {icon} from "../../../other/js/links";
 
 
 function Champions() {

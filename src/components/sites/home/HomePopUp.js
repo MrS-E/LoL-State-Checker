@@ -1,8 +1,8 @@
 import React from 'react';
 import './css/HomePopUp.css'
-import useFetch from "../../hooks/useFetch";
-import {get_region_from_platform, get_request} from "../../other/links";
-import {summoner_icon} from "../../other/links";
+import useFetch from "../../../hooks/useFetch";
+import {get_region_from_platform, get_request} from "../../../other/js/links";
+import {summoner_icon} from "../../../other/js/links";
 import Matches from "./matches/Matches";
 
 const HomePopUp = (props) => {

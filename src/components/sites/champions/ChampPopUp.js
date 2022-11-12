@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import UseFetch from "../../hooks/useFetch";
+import UseFetch from "../../../hooks/useFetch";
 import './css/ChampsPopUp.css'
-import {champ} from "../../other/links";
-import {splash} from "../../other/links";
-import {passiv} from "../../other/links";
-import {spell} from "../../other/links";
+import {champ} from "../../../other/js/links";
+import {splash} from "../../../other/js/links";
+import {passiv} from "../../../other/js/links";
+import {spell} from "../../../other/js/links";
 import SpellDescription from "./SpellDescription";
 import Graph from "./Graph";
 

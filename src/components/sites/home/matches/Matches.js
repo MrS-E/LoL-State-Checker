@@ -1,6 +1,6 @@
 import React from 'react';
-import useFetch from "../../../hooks/useFetch";
-import {get_request} from "../../../other/links";
+import useFetch from "../../../../hooks/useFetch";
+import {get_request} from "../../../../other/js/links";
 import Match from "./Match";
 
 const Matches = (props) => {

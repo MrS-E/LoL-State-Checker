@@ -27,7 +27,6 @@
     display: flex;
     padding-top: 3vh;
     width: 35vw;
-    padding-left: 6vw;
 }
 
 .summoner_point{
@@ -67,7 +66,8 @@
 }
 
 .champ{
-    padding-left: 8.5vw;
+    padding-left: 4.5vw;
+    padding-right: 4.5vw;
 }
 
 .match_title{
@@ -82,13 +82,15 @@
     display: flex;
     justify-content: space-evenly;
 }
-.items_div{}
 .item{
-    width: 3vh;
+    width: 5vh;
+    padding-bottom: 0.25vh;
+    padding-right: 0.25vh;
 }
 .stats_text{
     text-align: left;
     font-size: 1.5vh;
+    padding-left: 0.5vw;
 }
 
 .tk1{ /*TODO make design for multikills*/
@@ -102,10 +104,19 @@
 }
 
 @media (max-width: 1100px){
-    .sum{ /*TODO make summoner a little big bigger*/
+    .sum {/*TODO make summoner a little big bigger*/
         line-height: 1vh;
         height: 1vh;
         font-size: 1vh;
+    }
+
+    .stats_text{
+        font-size: smaller;
+        margin-left: 0;
+    }
+
+    .item{
+        width: 3vw;
     }
 
     .img{
@@ -113,6 +124,12 @@
         height: 1.9vw;
         margin-right: 1vw;
     }
+}
+@media(max-width: 900px){
+    .item{
+        display: none;
+    }
+
 }
 
 @media (max-width: 800px){
@@ -132,13 +149,30 @@
         padding-right: 4vw;
     }
     .KDA{
-        text-align: center;
         width: 7vw;
     }
 }
 
-@media(max-width: 400px){
+@media(max-width: 700px){
     .map{
         display: none;
+    }
+}
+
+@media(max-width: 500px){
+   .date{
+        display: none;
+    }
+    .champ_img{
+        width: 10vw;
+        padding-top: 0;
+    }
+    .KDA{
+        position: absolute;
+        display: flex;
+        transform: translate(-24.75vw, -3vh);
+    }
+    .KDA strong{
+        padding-right: 7px;
     }
 }

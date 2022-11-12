@@ -1,17 +1,21 @@
 import React, {useState} from 'react';
-import {get_request} from "../../../other/links";
-import useFetch from "../../../hooks/useFetch";
+import {get_request} from "../../../../other/js/links";
+import useFetch from "../../../../hooks/useFetch";
 import '../css/Match.css'
-import {summoner_icon, icon, items} from "../../../other/links";
-import {map} from "../../../other/links";
+import {summoner_icon, icon, items} from "../../../../other/js/links";
+import {map} from "../../../../other/js/links";
 import ChampPopUp from "../../champions/ChampPopUp";
+import HomePopUp from "../HomePopUp";
+import spacer1 from "../../../../other/files/spacer1.png";
 
 /*TODO wird irgendwie 4mal ausgeführt*/
 const Match = (props) => {
     const url = get_request("match_by_id",props.region,"region",[props.id],"query");
     const {data,loading} = useFetch(url);
     const [champ_trigger, champ_changeTrigger] = useState(false);
-    const queue = require('../../../files/queue.json'); //TODO use later with stored values
+    const [sum_trigger, sum_changeTrigger] = useState(false);
+    const [summonerName_popup, changeSummonerName_popup] = useState("");
+    const queue = require('../../../../other/files/queue.json'); //TODO use later with stored values
     if (loading) return <h6>Loading</h6>;
     if(data && queue) {
         const game={
@@ -59,13 +63,13 @@ const Match = (props) => {
                 <div className={game.className + " games " + game.triplekill + " " + game.quatrakill + " " + game.pentakill} id={props.id}>
                     <div className="match_title">
                         {/*<h6>{data.info.gameMode}</h6>*/}
-                        <h6>{search.description.replace(" games", "")}</h6>
-                        <p>{new Date(data.info.gameEndTimestamp).toLocaleDateString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}) /*Date from Unix Timestamp*/}</p>
+                        <h6 className="title">{search.description.replace(" games", "").replace("5v5 ", "")}</h6>
+                        <p className="date">{new Date(data.info.gameEndTimestamp).toLocaleDateString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}) /*Date from Unix Timestamp*/}</p>
                         <img className="map" alt={"map"+data.info.mapId} src={map+"map"+data.info.mapId+".png"}/>
                     </div>
                     <div className="stats">
                         <div className="items_div">
-                            {game.items.map((x, id)=>{if(x!=0)return(<img className="item" key={id} src={items + x + ".png"} alt={"item_"+x}/>);})}
+                            {game.items.map((x, id)=>{if(x<1001)return(<img className="item" key={id} src={spacer1} alt={"item_"+x}/>);return(<img className="item" key={id} src={items + x + ".png"} alt={"item_"+x}/>);})}
                         </div>
                         <div className="stats_text">
                             <span><strong>DMG</strong><br/> {game.totalDamage}</span><br/>
@@ -76,20 +80,21 @@ const Match = (props) => {
                     </div>
                     <div className="champ">
                         <img src={icon + game.champion + ".png"} className="rounded-circle icon champ_img" alt={game.champion} onClick={()=>champ_changeTrigger(true)}/>
-                        <div className="KDA">
-                            <p><strong>KDA</strong><br/> {game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
+                        <div>
+                            <p className="KDA"><strong>KDA</strong><br/>{game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
                         </div>
                     </div>
-                    <div className="summoner"> {/*TODO  align the same*/}
+                    <div className="summoner">
                         <div className="sum_blue">
-                            {game.summoner_blue.map((x, i)=>{return(<p key={i+"_blue"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})} {/*TODO make summoner a little big bigger*/}
+                            {game.summoner_blue.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_blue"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
                         </div>
                         <div className="sum_red">
-                            {game.summoner_red.map((x, i)=>{return(<p key={i+"_red"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p>)})}
+                            {game.summoner_red.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_red"} className="sum"><img src={summoner_icon+x[1]+".png"} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
                         </div>
                     </div>
                 </div>
                 <ChampPopUp  trigger={champ_trigger} champ={game.champion} setTrigger={champ_changeTrigger}/>
+                <HomePopUp trigger={sum_trigger} setTrigger={sum_changeTrigger} summoner={summonerName_popup} region={props.platform}/>
             </>
         );
     }
@@ -98,4 +103,3 @@ const Match = (props) => {
 //team 100 blue side
 
 export default Match;
-//https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_6124408693?api_key=RGAPI-31a604c2-66e3-4239-b8ec-00e6acb01ac2
