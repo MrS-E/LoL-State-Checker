@@ -40,6 +40,8 @@
 
 .sum_red, .sum_blue{
     padding-right: 0.75vw ;
+    word-break: break-word;
+
 }
 
 .sum{ /*TODO make summoner a little big bigger*/
@@ -49,6 +51,7 @@
     height: 1vh;
     font-size: 1.5vh;
     align-items:center;
+    text-align: left;
 }
 
 .img{
@@ -61,11 +64,6 @@
     width: 7vh;
     height: auto;
     padding-top: 2vh;
-}
-
-.champ_title{
-    text-align: center;
-    width: 10vh;
 }
 
 .champ{
@@ -87,4 +85,43 @@
 }
 .pk1{
 
+}
+
+@media (max-width: 1100px){
+    .sum{ /*TODO make summoner a little big bigger*/
+        line-height: 1vh;
+        height: 1vh;
+        font-size: 1vh;
+    }
+
+    .img{
+        width: 1.9vw;
+        height: 1.9vw;
+        margin-right: 1vw;
+    }
+}
+
+@media (max-width: 800px){
+    .summoner{
+        display: none;
+    }
+    .champ_img{
+        width: 7vw;
+        height: auto;
+        padding-top: 2vh;
+
+    }
+    .champ{
+        padding-right: 4vw;
+    }
+    .KDA{
+        text-align: center;
+        width: 7vw;
+    }
+}
+
+@media(max-width: 400px){
+    .map{
+        display: none;
+    }
 }

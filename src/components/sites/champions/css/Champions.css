@@ -1,8 +1,22 @@
 p {
     -moz-hyphens: auto;
-    -o-hyphens: auto;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
     text-align: center;
+}
+
+@media(max-width: 550px){
+    .col-12{
+        width: 5.5vw;
+    }
+}
+@media(max-width: 500px){
+    .col-12{
+        width: 7.5vw;
+        padding-bottom: 0.5vh;
+    }
+    p{
+        display: none;
+    }
 }

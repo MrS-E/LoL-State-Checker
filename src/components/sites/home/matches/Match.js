@@ -68,7 +68,7 @@ const Match = (props) => {
                     </div>
                     <div className="champ">
                         <img src={icon + game.champion + ".png"} className="rounded-circle icon champ_img" alt={game.champion} onClick={()=>champ_changeTrigger(true)}/>
-                        <div>
+                        <div className="KDA">
                             <p><strong>KDA</strong> <br/> {game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
                         </div>
                     </div>
