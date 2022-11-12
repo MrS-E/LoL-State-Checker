@@ -15,6 +15,7 @@ function get_version(){ //TODO make it nicer with arrays and sub-urls
         spell = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/spell/";
         passiv = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/passive/";
         summoner_icon = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/profileicon/";
+        items = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/item/";
     }
     xmlhttp.open("GET",  version);
     xmlhttp.send();
@@ -28,6 +29,7 @@ export let icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/champion/"
 export let spell = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/spell/";
 export let passiv = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/passive/";
 export let summoner_icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/profileicon/";
+export let items = "http://ddragon.leagueoflegends.com/cdn/12.21.1/img/item/";
 export const queueID = "https://static.developer.riotgames.com/docs/lol/queues.json";
 export const map="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/";
 

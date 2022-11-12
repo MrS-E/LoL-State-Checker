@@ -77,6 +77,20 @@
 .match_title p{
     text-align: left;
 }
+
+.stats{
+    display: flex;
+    justify-content: space-evenly;
+}
+.items_div{}
+.item{
+    width: 3vh;
+}
+.stats_text{
+    text-align: left;
+    font-size: 1.5vh;
+}
+
 .tk1{ /*TODO make design for multikills*/
 
 }
@@ -103,6 +117,9 @@
 
 @media (max-width: 800px){
     .summoner{
+        display: none;
+    }
+    .stats{
         display: none;
     }
     .champ_img{

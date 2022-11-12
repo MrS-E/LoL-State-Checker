@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {get_request} from "../../../other/links";
 import useFetch from "../../../hooks/useFetch";
 import '../css/Match.css'
-import {summoner_icon, icon} from "../../../other/links";
+import {summoner_icon, icon, items} from "../../../other/links";
 import {map} from "../../../other/links";
 import ChampPopUp from "../../champions/ChampPopUp";
 
@@ -23,6 +23,7 @@ const Match = (props) => {
             gold: 0,
             CS: 0,
             visionScore: 0,
+            totalDamage: 0,
             className: "c200",
             triplekill: "",
             quatrakill: "",
@@ -42,10 +43,12 @@ const Match = (props) => {
                 if(data["info"]["participants"][x]["pentaKills"]>0) game.pentakill="pk1";
                 game.kda.push(data["info"]["participants"][x]["kills"],data["info"]["participants"][x]["deaths"],data["info"]["participants"][x]["assists"]);
                 game.champion = data["info"]["participants"][x]["championName"];
-                game.items.push(data["info"]["participants"][x]["item0"],data["info"]["participants"][x]["item1"],data["info"]["participants"][x]["item2"],data["info"]["participants"][x]["item3"],data["info"]["participants"][x]["item4"],data["info"]["participants"][x]["item5"],data["info"]["participants"][x]["item6"]);
+                game.items.push(data["info"]["participants"][x]["item0"],data["info"]["participants"][x]["item1"],data["info"]["participants"][x]["item2"],data["info"]["participants"][x]["item3"],data["info"]["participants"][x]["item4"],data["info"]["participants"][x]["item5"]);
+                console.log(data["info"]["participants"][x]["item0"],data["info"]["participants"][x]["item1"],data["info"]["participants"][x]["item2"],data["info"]["participants"][x]["item3"],data["info"]["participants"][x]["item4"],data["info"]["participants"][x]["item5"])
                 game.gold = data["info"]["participants"][x]["goldEarned"];
                 game.CS = (data["info"]["participants"][x]["totalMinionsKilled"])+(data["info"]["participants"][x]["neutralMinionsKilled"]);
                 game.visionScore = data["info"]["participants"][x]["visionScore"];
+                game.totalDamage= data["info"]["participants"][x]["totalDamageDealt"];
             }
 
         }
@@ -60,16 +63,21 @@ const Match = (props) => {
                         <p>{new Date(data.info.gameEndTimestamp).toLocaleDateString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}) /*Date from Unix Timestamp*/}</p>
                         <img className="map" alt={"map"+data.info.mapId} src={map+"map"+data.info.mapId+".png"}/>
                     </div>
-                    <div>
-                        {/*TODO Item Build*/}
-                        {/*TODO Gold earned*/}
-                        {/*TODO CS (totalMinionsKilled + neutralMinionsKilled)*/}
-                        {/*TODO visionScore*/}
+                    <div className="stats">
+                        <div className="items_div">
+                            {game.items.map((x, id)=>{if(x!=0)return(<img className="item" key={id} src={items + x + ".png"} alt={"item_"+x}/>);})}
+                        </div>
+                        <div className="stats_text">
+                            <span><strong>DMG</strong><br/> {game.totalDamage}</span><br/>
+                            <span><strong>CS</strong><br/> {game.CS}</span><br/>
+                            <span><strong>Gold</strong><br/> {game.gold}</span><br/>
+                            <span><strong>Vision</strong><br/> {game.visionScore}</span><br/>
+                        </div>
                     </div>
                     <div className="champ">
                         <img src={icon + game.champion + ".png"} className="rounded-circle icon champ_img" alt={game.champion} onClick={()=>champ_changeTrigger(true)}/>
                         <div className="KDA">
-                            <p><strong>KDA</strong> <br/> {game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
+                            <p><strong>KDA</strong><br/> {game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
                         </div>
                     </div>
                     <div className="summoner"> {/*TODO  align the same*/}
