@@ -11,7 +11,6 @@ const HomePopUp = (props) => {
     const games_num=10;
     const region = get_region_from_platform(props.region);
 
-    console.log(url);
     if(props.trigger && data){
         const icon = summoner_icon + data.profileIconId + ".png";
         return(

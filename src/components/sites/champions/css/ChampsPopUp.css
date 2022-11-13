@@ -113,14 +113,12 @@
         margin-right: 0.05vw;
     }
 }
-
-@media (max-width: 450px){
-    .skin_sub {
-        font-weight: bold;
-        font-size: smaller;
-        word-wrap: break-word;
-        transform: translate(0,  -5vh);
+@media(max-width: 850px){
+    .skin:hover + .skin_sub {
+        display: none;
     }
+}
+@media (max-width: 450px){
     .show_btn{
         height: 7vh;
     }

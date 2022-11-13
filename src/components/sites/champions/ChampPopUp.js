@@ -78,7 +78,7 @@ const graph_data = (data) => {
         output.datasets[7].data.push(stats.movespeed);
         output.datasets[8].data.push(stats.crit+(stats.critperlevel*x));
         output.datasets[9].data.push(stats.spellblock+(stats.spellblockperlevel*x));
-        console.log(stats.hp, stats.hpregen, stats.mp, stats.mpregen, stats.armor, stats.attackdamage, stats.attackspeed, stats.movespeed, stats.crit, stats.spellblock);
+        //console.log(stats.hp, stats.hpregen, stats.mp, stats.mpregen, stats.armor, stats.attackdamage, stats.attackspeed, stats.movespeed, stats.crit, stats.spellblock);
     }
 
     return output;
@@ -95,7 +95,7 @@ const ChampPopUp = (props) => {
             <div className="popup">
                 <div className="popup-inner">
                     <div>
-                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");console.log(spellDesc,spellName)}}>close</button>
+                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");}}>close</button>
                     </div>
                     <div>
                         <div>
@@ -160,7 +160,7 @@ const ChampPopUp = (props) => {
         <div className="popup">
             <div className="popup-inner">
                 <div>
-                    <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");console.log(spellDesc,spellName)}}>close</button>
+                    <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");}}>close</button>
                     <h3>Champion</h3>
                 </div>
                 <div>

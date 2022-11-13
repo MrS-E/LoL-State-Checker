@@ -20,7 +20,6 @@ function Searchbar(props) {
             <button onClick={()=>{
                 props.setName(document.getElementById("search").value);
                 props.setRegion(document.getElementById("regions").value);
-                console.log(document.getElementById("regions").value);
                 props.toSearch(true);
             }}>search</button>
         </div>

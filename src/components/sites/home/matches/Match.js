@@ -48,7 +48,6 @@ const Match = (props) => {
                 game.kda.push(data["info"]["participants"][x]["kills"],data["info"]["participants"][x]["deaths"],data["info"]["participants"][x]["assists"]);
                 game.champion = data["info"]["participants"][x]["championName"];
                 game.items.push(data["info"]["participants"][x]["item0"],data["info"]["participants"][x]["item1"],data["info"]["participants"][x]["item2"],data["info"]["participants"][x]["item3"],data["info"]["participants"][x]["item4"],data["info"]["participants"][x]["item5"]);
-                console.log(data["info"]["participants"][x]["item0"],data["info"]["participants"][x]["item1"],data["info"]["participants"][x]["item2"],data["info"]["participants"][x]["item3"],data["info"]["participants"][x]["item4"],data["info"]["participants"][x]["item5"])
                 game.gold = data["info"]["participants"][x]["goldEarned"];
                 game.CS = (data["info"]["participants"][x]["totalMinionsKilled"])+(data["info"]["participants"][x]["neutralMinionsKilled"]);
                 game.visionScore = data["info"]["participants"][x]["visionScore"];
@@ -57,7 +56,6 @@ const Match = (props) => {
 
         }
         const search = queue.find((qu) => qu.queueId === data.info.queueId);
-        console.log(search)
         return (
             <>
                 <div className={game.className + " games " + game.triplekill + " " + game.quatrakill + " " + game.pentakill} id={props.id}>

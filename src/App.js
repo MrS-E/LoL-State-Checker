@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom';
-//import NavBar from "./components/NavBar";
 import Champions from "./components/sites/champions/Champions";
 import Home from "./components/sites/home/Home";
 import Items from "./components/sites/items/Items";

@@ -9,9 +9,8 @@ import {icon} from "../../../other/js/links";
 function Champions() {
     const [trigger, changeTrigger] = useState(false);
     const [champion, changeChamp] = useState("");
-    const {data, loading, error} = UseFetch(champions); //TODO push fetching of json files to stored values.
+    const {data, loading} = UseFetch(champions); //TODO push fetching of json files to stored values.
     if (loading) return <h1>Loading</h1>;
-    if (error) return console.log(error);
     if(data!=null){
     return(
         <>
