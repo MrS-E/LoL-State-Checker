@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import UseFetch from "../../../hooks/useFetch";
 import './css/ChampsPopUp.css'
+import '../../../other/css/PopUp.css'
 import {champ} from "../../../other/js/links";
 import {splash} from "../../../other/js/links";
 import {passiv} from "../../../other/js/links";

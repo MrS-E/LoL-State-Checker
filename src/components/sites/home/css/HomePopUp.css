@@ -1,30 +1,5 @@
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .popup-inner{
-    position: relative;
-    padding: 3vmin;
-    width: 100%;
-    max-width: 75vw;
-    background-color: white;
-    overflow: scroll;
     max-height: 70vh;
-}
-.popup-inner .close-btn{
-    position: absolute;
-    top: 16px;
-    right: 16px;
-}
-.close-btn{
-/*TODO make close button look nicer*/
 }
 #icon{
     width: 5vw;
