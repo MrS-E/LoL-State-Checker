@@ -31,8 +31,7 @@ const Match = (props) => {
             className: "c200",
             triplekill: "",
             quatrakill: "",
-            pentakill: "",
-
+            pentakill: ""
         }
         for(let x=0;x<data.info.participants.length;x++){
             if(x<5){

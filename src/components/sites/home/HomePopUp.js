@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/HomePopUp.css'
-import '../../../other/css/PopUp.css'
+import '../../css/PopUp.css'
 import useFetch from "../../../hooks/useFetch";
 import {get_region_from_platform, get_request} from "../../../other/js/links";
 import {summoner_icon} from "../../../other/js/links";

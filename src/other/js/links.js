@@ -22,7 +22,7 @@ function get_version(){ //TODO make it nicer with arrays and sub-urls
     xmlhttp.send();
 }
 
-    //TODO function for nicer link generation not just import (more like api)
+//TODO function for nicer link generation not just import (more like api)
 
 // Images
 export const splash = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";
@@ -67,7 +67,7 @@ export function get_request(get, routing, routing_typ, needed, typ){
     let url = "https://";
     switch (routing_typ){
         case "region":
-             url += routing_region[routing] ;
+             url += routing_region[routing];
             break;
         case "platform":
             url += routing_platform[routing];
