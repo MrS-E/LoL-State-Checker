@@ -1,3 +1,5 @@
+import React from "react";
+import './css/Items.css';
 /*
 * TODO Plan: Items with Images sortable after group/tags/alphabetical clickable like champions with detail view
 * */
