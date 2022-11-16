@@ -4,6 +4,7 @@ const version = "https://ddragon.leagueoflegends.com/api/versions.json";
 get_version();
 export let champions = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/champion.json";
 export let champ = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/champion/";
+export let items_json = "http://ddragon.leagueoflegends.com/cdn/12.22.1/data/en_US/item.json";
 
 function get_version(){ //TODO make it nicer with arrays and sub-urls
     const xmlhttp = new XMLHttpRequest();
@@ -17,6 +18,7 @@ function get_version(){ //TODO make it nicer with arrays and sub-urls
         passiv = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/passive/";
         summoner_icon = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/profileicon/";
         items = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/item/";
+        items_json = "http://ddragon.leagueoflegends.com/cdn/"+ver+"/data/en_US/item.json";
     }
     xmlhttp.open("GET",  version);
     xmlhttp.send();

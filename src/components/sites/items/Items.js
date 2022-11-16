@@ -1,25 +1,28 @@
 import React from "react";
 import './css/Items.css';
 import useFetch from "../../../hooks/useFetch";
+import {items_json} from "../../../other/js/links";
 /*
-* TODO Plan: Items with Images sortable after group/tags/alphabetical clickable like champions with detail view
-* */
+* TODO Plan: Items with Images sortable after tags/alphabetical clickable like champions with detail view
+*/
 function Items(){
-    const {data, loading} = useFetch("http://ddragon.leagueoflegends.com/cdn/12.22.1/data/en_US/item.json");
-    let i = []
+    const {data, loading} = useFetch(items_json);
+    if(loading) return <h1>Loading</h1>;
     if(data) {
-        Object.values(data.data).forEach((d) => {
-            d.tags.forEach(d => i.push(d))
-        })
-        console.log(i);
-        let uniq = [...new Set(i)];
-        console.log(uniq);
+        return (
+            <div>
+                <h1>Items Page {data.version}</h1>
+                <hr/>
+                <input type="radio" id="tags" value="tags" checked/>
+                    <input type="radio" id="alph" value="alph"/>
+                <div>
+
+                </div>
+            </div>
+        );
+    }else{
+        return '';
     }
-    return (
-        <>
-            <h1>Items Page</h1>
-        </>
-    );
 }
 
 export default Items;
@@ -57,4 +60,17 @@ Tags;
 "Slow"
 "GoldPer"
 "MagicResist"
+
+
+mit:
+
+    if(data) {
+        let i = []
+        Object.values(data.data).forEach((d) => {
+            d.tags.forEach(d => i.push(d))
+        })
+        console.log(i);
+        let uniq = [...new Set(i)];
+        console.log(uniq);
+    }
 * */
