@@ -7,7 +7,10 @@ import {summoner_icon} from "../../../other/js/links";
 import Matches from "./matches/Matches";
 
 const HomePopUp = (props) => {
-    const url = get_request("summoner_by_name", props.region, "platform", [props.summoner], "query");
+    let url = "";
+    if(props.trigger) {
+        url = get_request("summoner_by_name", props.region, "platform", [props.summoner], "query");
+    }
     const {data, loading} = useFetch(url);
     const games_num=10;
     const region = get_region_from_platform(props.region);

@@ -14,7 +14,7 @@ const Match = (props) => {
     const {data,loading} = useFetch(url);
     const [champ_trigger, champ_changeTrigger] = useState(false);
     const [sum_trigger, sum_changeTrigger] = useState(false);
-    const [summonerName_popup, changeSummonerName_popup] = useState("");
+    const [summonerName_popup, changeSummonerName_popup] = useState("DiatotRU"); /*FIXME ohne DiatotRU immer 403 not allowed, doch bei DiatotRU 404 not found wegen falscher region*/
     const queue = require('../../../../other/files/queue.json'); //TODO use later with stored values
     if (loading) return <h6>Loading</h6>;
     if(data && queue) {

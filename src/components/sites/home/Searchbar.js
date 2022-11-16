@@ -1,8 +1,9 @@
 import React from 'react';
+import './css/Searchbar.css';
 
 function Searchbar(props) {
     return(
-        <div>
+        <div className="searchbar">
             <select id="regions">
                 <option value="EUW1">EUW</option>
                 <option value="EUN1">EUN</option>
