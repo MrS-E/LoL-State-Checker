@@ -1,0 +1,13 @@
+.items{
+ margin-top: 2vh;
+}
+.item_img{
+    width: 3vw;
+    margin: 2px;
+}
+.items div{
+    padding: 5px;
+    border: #223c5b 2px solid;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

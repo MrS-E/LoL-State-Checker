@@ -5,6 +5,7 @@ get_version();
 export let champions = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/champion.json";
 export let champ = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/champion/";
 export let items_json = "http://ddragon.leagueoflegends.com/cdn/12.22.1/data/en_US/item.json";
+export const queueID = "https://static.developer.riotgames.com/docs/lol/queues.json";
 
 function get_version(){ //TODO make it nicer with arrays and sub-urls
     const xmlhttp = new XMLHttpRequest();
@@ -33,7 +34,6 @@ export let spell = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/spell/";
 export let passiv = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/passive/";
 export let summoner_icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/profileicon/";
 export let items = "http://ddragon.leagueoflegends.com/cdn/12.21.1/img/item/";
-export const queueID = "https://static.developer.riotgames.com/docs/lol/queues.json";
 export const map="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/";
 
 //API
