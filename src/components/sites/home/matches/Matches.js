@@ -4,10 +4,11 @@ import {get_request} from "../../../../other/js/links";
 import Match from "./Match";
 
 const Matches = (props) => {
-    const url_matchhistory=get_request("match_ids_by_puuid",props.region,"region",[props.puuid,0,props.games],"query");
-    const{data, loading} = useFetch(url_matchhistory);
+    const url=get_request("match_ids_by_puuid",props.region,"region",[props.puuid,0,props.games],"query");
+    const{data, loading} = useFetch(url);
     if(loading) return <h3>Loading</h3>;
     if(data) {
+        console.log(data);
         return (
             <div>
                 {data.map((id, i)=>{
@@ -19,4 +20,4 @@ const Matches = (props) => {
 };
 
 export default Matches;
-//TODO  idea for wincounting, 2d array of match_ids
+//TODO  idea for win counting, 2d array of match_ids

@@ -83,10 +83,7 @@ const graph_data = (data) => {
 }
 
 const ChampPopUp = (props) => {
-    let url = "";
-    if(props.trigger) {
-        url = get_url("champ", (props.champ + ".json"));
-    }
+    const url = get_url("champ", (props.champ + ".json"));
     const {data, loading} = UseFetch(url);
     const [spellName, changeSpellName] = useState("");
     const [spellDesc, changeSpellDesc] = useState("");

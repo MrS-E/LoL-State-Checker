@@ -1,26 +1,9 @@
 import {api_key} from "./key";
-//JSON
-//export const version = "https://ddragon.leagueoflegends.com/api/versions.json";
-//export const queueID = "https://static.developer.riotgames.com/docs/lol/queues.json";
-
-//export let champions = "12.17.1/data/en_US/champion.json";
-//export let champ = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/champion/";
-//export let items_json = "http://ddragon.leagueoflegends.com/cdn/12.22.1/data/en_US/item.json";
-//Image
-//export const splash = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";
-//export let icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/champion/";
-//export let spell = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/spell/";
-//export let passiv = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/passive/";
-//export let summoner_icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/profileicon/";
-//export let items = "http://ddragon.leagueoflegends.com/cdn/12.21.1/img/item/";
-//export const map="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/";
 
 const language = {}
-
 const prefix = {
     ddragon:"http://ddragon.leagueoflegends.com/cdn/",
 }
-
 const main = {
     "icon" : [prefix.ddragon,0,"/img/champion/"],
     "spell" : [prefix.ddragon,0,"/img/spell/"],
@@ -100,6 +83,7 @@ const urls = {
 };
 
 export function get_request(get, routing, routing_typ, needed, typ){
+    console.log(needed);
     let url = "https://";
     switch (routing_typ){
         case "region":
