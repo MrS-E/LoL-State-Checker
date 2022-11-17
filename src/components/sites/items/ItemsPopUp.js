@@ -13,7 +13,7 @@ const ItemsPopUp = (props) => {
         return(
             <>
                 <div className="popup">
-                    <div className="popup-inner">
+                    <div className="popup-inner item_height_popup">
                         <div>
                             <button className="close-btn" onClick={() => {props.setTrigger(false)}}>close</button>
                         </div>

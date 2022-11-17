@@ -16,7 +16,6 @@
     max-width: 75vw;
     background-color: white;
     overflow: scroll;
-    max-height: 70vh;
 }
 .popup-inner .close-btn{
     position: absolute;

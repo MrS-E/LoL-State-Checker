@@ -19,7 +19,7 @@ const HomePopUp = (props) => {
         const icon = summoner_icon + data.profileIconId + ".png";
         return(
             <div className="popup">
-                <div className="popup-inner">
+                <div className="popup-inner home_height_popup">
                     <div>
                         <button className="close-btn" onClick={() => props.setTrigger(false)}>close</button>
                         <div className="row">

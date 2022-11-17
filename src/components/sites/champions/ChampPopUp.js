@@ -95,7 +95,7 @@ const ChampPopUp = (props) => {
     if(props.trigger && data){
         return(
             <div className="popup">
-                <div className="popup-inner">
+                <div className="popup-inner champ_height_popup">
                     <div>
                         <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");changeSpellTooltip(null)}}>close</button>
                     </div>
@@ -128,10 +128,10 @@ const ChampPopUp = (props) => {
                                     </button>
                                     <button className="col-5 show_btn"
                                             onClick={() => {changeSpellName("");changeSpellDesc(
-                                                <table><tbody>
+                                                <table>
                                                     <tr><td><strong>Ally Tips</strong></td></tr>{champion.allytips.map((x,i)=>{return(<tr key={i}><td>{x}<hr/></td></tr>);})}
                                                     <tr><td><strong>Enemy Tips</strong></td></tr>{champion.enemytips.map((x,i)=>{return(<tr key={i}><td>{x}<hr/></td></tr>);})}
-                                                </tbody></table>
+                                                </table>
                                             );}}>
                                         Tips
                                     </button>

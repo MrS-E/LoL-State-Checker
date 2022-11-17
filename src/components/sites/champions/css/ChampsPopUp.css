@@ -1,4 +1,4 @@
-.popup-inner{
+.champ_height_popup{
     max-height: 80vw;
     min-height: 80vh;
 }
@@ -49,7 +49,7 @@
     text-align: center;
     position: absolute;
     word-wrap: break-word;
-    transform: translate(0,  -7vh); /*TODO i'm not sure if i like the hover effect, maybe clickable (name + big image) like spell would be better*/
+    transform: translate(0,  -7vh); /*TODO i'm not sure if i like the hover effect (i don't like it), maybe clickable (name + big image) like spell would be better*/
 }
 .skin:hover + .skin_sub {
     display: block;
