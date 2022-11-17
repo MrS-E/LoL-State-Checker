@@ -21,15 +21,19 @@ const ItemsPopUp = (props) => {
                             <div>
                                 <img className="pop_item_img" alt={data[props.item].name} src={items + data[props.item].image.full}/>
                                 <div>
-                                    {build(data, props)}
+                                    <h5>Tags:</h5>
+                                    {data[props.item].tags.map((d,k)=><span key={k}>{d}<br/></span>)}
+                                    <div className="pop_item_build">
+                                        {build(data, props)}
+                                    </div>
                                 </div>
                             </div>
                             <div className="pop_item_stats">
                                 <h5>Description:</h5>
                                 {(data[props.item].description).replace(/<[\/-z]*>/g, " ").replace(/\{\{ [*-z]* }}/g, " ").replace(/<[0-z]* \/>/g, " ").replace("  ", " ")}
-                                <p><strong>Buy (base): </strong>{data[props.item].gold.base}</p>
-                                <p><strong>Buy (total): </strong>{data[props.item].gold.total}</p>
-                                <p><strong>Sell: </strong>{data[props.item].gold.sell}</p>
+                                <span><br/><strong>Buy (base): </strong>{data[props.item].gold.base}</span>
+                                <span><br/><strong>Buy (total): </strong>{data[props.item].gold.total}</span>
+                                <span><br/><strong>Sell: </strong>{data[props.item].gold.sell}</span>
                             </div>
                         </div>
                     </div>

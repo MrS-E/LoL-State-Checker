@@ -15,8 +15,6 @@ function Items(){
     const [item,changeItem] = useState("")
     if(loading) return <h1>Loading</h1>;
     if(data) {
-
-
         return (
             <>
                 <div>
@@ -91,12 +89,10 @@ function get_items_by_tags(data){
 
 function get_items_by_letter(data){
     const items={
-        items: []
+         "" : [],
     };
-    Object.keys(data.data).forEach((d)=>{
-        items.items.push([data.data[d].name, d]);
-    })
-    items.items =  [...new Set(items.items.sort((a,b)=>{
+    items[""] = Object.keys(data.data)
+    items[""] =  [...new Set(items[""].sort((a,b)=>{
         if(a[0]<b[0]){
             return -1;
         }else if(b[0]<a[0]){
@@ -106,7 +102,7 @@ function get_items_by_letter(data){
         }
     }))]
     return items;
-} //FIXME alphabet does not work
+}
 
 function gen(typ, data, setTrigger, changeItem){
     let item;
@@ -118,10 +114,16 @@ function gen(typ, data, setTrigger, changeItem){
     }
 
     Object.keys(item).sort().forEach((d, key) => {
-        output.push(<div key={key+"_item"}><h6>{d}</h6>{item[d].map((x)=>{return(<img onClick={()=>{setTrigger(true); changeItem(x);}} className="item_img" src={items+data.data[x].image.full} alt={data.data[x].name +" "+ x}/>);})}</div>);
+        let split = d.search(/.[A-Z]/g)<0 ? 0 : d.search(/.[A-Z]/g)+1;
+        console.log(split)
+        output.push(<div key={key+"_item"}><h6>{d.splice(split,0," ")}</h6>{item[d].map((x, key)=>{return(<img key={key} onClick={()=>{setTrigger(true); changeItem(x);}} className="item_img" src={items+data.data[x].image.full} alt={data.data[x].name +" "+ x}/>);})}</div>);
     });
     return output
 }
+
+String.prototype.splice = function(idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+};
 
 export default Items;
 
