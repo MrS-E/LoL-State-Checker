@@ -21,7 +21,7 @@ const Match = (props) => {
         } catch (e) {
 
         }
-    }, [localStorage.getItem('queues')]);
+    }, [localStorage.getItem('queues')])
 
     if (loading) return <h6>Loading</h6>;
     if(data && queue) {
