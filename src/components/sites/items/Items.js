@@ -20,7 +20,7 @@ function Items(){
                 <div>
                     <h1>Items Page {data.version}</h1>
                     <hr/>
-                    <div>
+                    <div className="items_input">
                         Sort by:
                         <input type="radio" id="tags" value="tags" name="sort" defaultChecked onClick={()=>changeTyp(0)}/>
                         <label>Tags</label>
@@ -91,8 +91,11 @@ function get_items_by_letter(data){
     const items={
          "" : [],
     };
-    items[""] = Object.keys(data.data)
-    items[""] =  [...new Set(items[""].sort((a,b)=>{
+    let items_temp=[];
+    Object.keys(data.data).forEach((d)=>{
+        items_temp.push([data.data[d].name, d]);
+    })
+    items_temp =  [...new Set(items_temp.sort((a,b)=>{
         if(a[0]<b[0]){
             return -1;
         }else if(b[0]<a[0]){
@@ -101,6 +104,7 @@ function get_items_by_letter(data){
             return 0;
         }
     }))]
+    items_temp.forEach((d)=>items[""].push(d[1]));
     return items;
 }
 
@@ -115,14 +119,13 @@ function gen(typ, data, setTrigger, changeItem){
 
     Object.keys(item).sort().forEach((d, key) => {
         let split = d.search(/.[A-Z]/g)<0 ? 0 : d.search(/.[A-Z]/g)+1;
-        console.log(split)
         output.push(<div key={key+"_item"}><h6>{d.splice(split,0," ")}</h6>{item[d].map((x, key)=>{return(<img key={key} onClick={()=>{setTrigger(true); changeItem(x);}} className="item_img" src={items+data.data[x].image.full} alt={data.data[x].name +" "+ x}/>);})}</div>);
     });
     return output
 }
 
 String.prototype.splice = function(idx, rem, str) {
-    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem)); //gefunden auf https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index
 };
 
 export default Items;

@@ -6,10 +6,13 @@
     margin: 2px;
 }
 .items div{
-    padding: 5px;
+    padding: 0 7px 7px 7px;
     border: #223c5b 2px solid;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+.items_input input{
+    margin: 5px;
 }
 @media(max-width: 1000px){
     .item_img{
