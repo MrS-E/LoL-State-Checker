@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {get_request, get_url} from "../../../../other/js/links";
 import useFetch from "../../../../hooks/useFetch";
 import '../css/Match.css'
@@ -13,7 +13,16 @@ const Match = (props) => {
     const [champ_trigger, champ_changeTrigger] = useState(false);
     const [sum_trigger, sum_changeTrigger] = useState(false);
     const [summonerName_popup, changeSummonerName_popup] = useState("DiatotRU"); /*FIXME ohne DiatotRU immer 403 not allowed, doch bei DiatotRU 404 not found wegen falscher region*/
-    const queue = require('../../../../other/files/queue.json'); //TODO use later with stored values
+
+    const [queue, changeData] = useState(undefined);
+    useEffect(()=> {
+        try {
+            changeData(JSON.parse(localStorage.getItem('queues')));
+        } catch (e) {
+
+        }
+    }, [localStorage.getItem('queues')])
+
     if (loading) return <h6>Loading</h6>;
     if(data && queue) {
         const game={

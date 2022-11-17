@@ -1,5 +1,4 @@
-import React, {useState} from "react"
-import UseFetch from "../../../hooks/useFetch";
+import React, {useEffect, useState} from "react"
 import './css/Champions.css'
 import ChampPopUp from "./ChampPopUp";
 import {get_url} from "../../../other/js/links";
@@ -7,9 +6,15 @@ import {get_url} from "../../../other/js/links";
 function Champions() {
     const [trigger, changeTrigger] = useState(false);
     const [champion, changeChamp] = useState("");
-    const url = get_url("champions");
-    console.log(url);
-    const {data, loading} = UseFetch(url); //TODO push fetching of json files to stored values.
+    const [data, changeData] = useState(undefined);
+    const [loading, changeLoading] = useState(false);
+    useEffect(()=> {
+        try {
+            changeData(JSON.parse(localStorage.getItem('champions')));
+        } catch (e) {
+            changeLoading(true);
+        }
+    }, [localStorage.getItem('champions')])
     if (loading) return <h1>Loading</h1>;
     if(data!=null){
     return(

@@ -3,8 +3,6 @@ import '../../css/PopUp.css'
 import './css/ItemsPopUp.css'
 import {get_url} from "../../../other/js/links";
 
-
-
 const ItemsPopUp = (props) => {
     const data = props.data.data;
     const [poptrigger, popsetTrigger] = useState(false);

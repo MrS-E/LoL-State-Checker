@@ -16,7 +16,7 @@ const SpellDescription = (props) => {
             </div>
             <div>
                 <div className="lore">
-                    <p>{desc}</p>
+                    {desc}
                     {
                        showTooltip(tooltip)
                     }

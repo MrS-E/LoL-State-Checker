@@ -1,12 +1,19 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './css/Items.css';
-import useFetch from "../../../hooks/useFetch";
 import {get_url} from "../../../other/js/links";
 import ItemsPopUp from "./ItemsPopUp";
 
 function Items(){
-    const url = get_url("items_json");
-    const {data, loading} = useFetch(url);
+    const [data, changeData] = useState(undefined);
+    const [loading, changeLoading] = useState(false);
+    useEffect(()=> {
+        try {
+            changeData(JSON.parse(localStorage.getItem('items')));
+        } catch (e) {
+            changeLoading(true);
+        }
+    }, [localStorage.getItem('items')])
+
     const [typ, changeTyp] = useState(0);
     const [trigger, setTrigger] = useState(false);
     const [item,changeItem] = useState("")
