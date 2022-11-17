@@ -83,7 +83,6 @@ const urls = {
 };
 
 export function get_request(get, routing, routing_typ, needed, typ){
-    console.log(needed);
     let url = "https://";
     switch (routing_typ){
         case "region":

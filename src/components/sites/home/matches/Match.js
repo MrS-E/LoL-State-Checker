@@ -97,7 +97,6 @@ const Match = (props) => {
                         </div>
                     </div>
                 </div>
-                {console.log(game.champion)}
                 <ChampPopUp  trigger={champ_trigger} champ={game.champion} setTrigger={champ_changeTrigger}/>
                 <HomePopUp trigger={sum_trigger} setTrigger={sum_changeTrigger} summoner={summonerName_popup} region={props.platform}/>
             </>

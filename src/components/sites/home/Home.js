@@ -27,7 +27,6 @@ function Home() {
             <div className="center">
                 <Searchbar setName={changeName} toSearch={changeTrigger} setRegion={changeRegion}/>
             </div>
-            {console.log(name, region)}
             <HomePopUp trigger={trigger} setTrigger={changeTrigger} summoner={name} region={region}/>
         </div>
     );

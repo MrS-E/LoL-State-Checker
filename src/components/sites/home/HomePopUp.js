@@ -6,13 +6,13 @@ import {get_region_from_platform, get_request, get_url} from "../../../other/js/
 import Matches from "./matches/Matches";
 
 const HomePopUp = (props) => {
-    const url = get_request("summoner_by_name", props.region, "platform", [props.summoner], "query");
+    let url;
+    if(props.trigger) url = get_request("summoner_by_name", props.region, "platform", [props.summoner], "query");
     const {data, loading} = useFetch(url);
     const games_num=10;
     const region = get_region_from_platform(props.region);
 
     if(props.trigger && data){
-        console.log(data)
         const icon = get_url("summoner_icon", (data.profileIconId + ".png"));
         return(
             <div className="popup">
@@ -37,7 +37,6 @@ const HomePopUp = (props) => {
                             <h1><kbd>how many wins in the last games</kbd></h1> {/*FIXME i have to put wincount in matches, don't know how, but if i use a second request (from an other file) it's too many requests*/}
                         </div>
                         <div className="HomePopUp_MatchHistory">
-                            {console.log(data.puuid)}
                             <Matches puuid={data.puuid} summmoner={data.name} region={region} games={games_num} platform={props.region}/>
                         </div>
                     </div>

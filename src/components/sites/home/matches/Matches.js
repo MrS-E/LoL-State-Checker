@@ -8,7 +8,6 @@ const Matches = (props) => {
     const{data, loading} = useFetch(url);
     if(loading) return <h3>Loading</h3>;
     if(data) {
-        console.log(data);
         return (
             <div>
                 {data.map((id, i)=>{
