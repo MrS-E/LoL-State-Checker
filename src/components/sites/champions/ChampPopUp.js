@@ -89,6 +89,7 @@ const ChampPopUp = (props) => {
     const {data, loading} = UseFetch(champ + props.champ + ".json");
     const [spellName, changeSpellName] = useState("");
     const [spellDesc, changeSpellDesc] = useState("");
+    const [spellTooltip, changeSpellTooltip] = useState("");
     let champion = props.champ;
     if (data) champion = Object.values(data?.data)[0];
     if(props.trigger && data){
@@ -96,7 +97,7 @@ const ChampPopUp = (props) => {
             <div className="popup">
                 <div className="popup-inner">
                     <div>
-                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");}}>close</button>
+                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");changeSpellTooltip(null)}}>close</button>
                     </div>
                     <div>
                         <div>
@@ -141,13 +142,13 @@ const ChampPopUp = (props) => {
                                     </div>
                                     {champion.spells.map((x,i) => {
                                         return(
-                                            <div key={i} className="col-2" onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);}}>
+                                            <div key={i} className="col-2" onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);changeSpellTooltip(x.tooltip)}}>
                                                 <img className="spell" alt={"spell_"+x.image.full} src={spell + x.image.full}/>
                                             </div>
                                         );
                                     })}
                                     <div className="row">
-                                        <SpellDescription name={spellName} desc={spellDesc}/>
+                                        <SpellDescription name={spellName} desc={spellDesc} tooltip={spellTooltip}/>
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +162,7 @@ const ChampPopUp = (props) => {
         <div className="popup">
             <div className="popup-inner">
                 <div>
-                    <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");}}>close</button>
+                    <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");changeSpellTooltip(null)}}>close</button>
                     <h3>Champion</h3>
                 </div>
                 <div>

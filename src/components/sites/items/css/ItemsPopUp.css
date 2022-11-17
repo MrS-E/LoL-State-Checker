@@ -1,0 +1,25 @@
+.popup-inner{
+    max-height: 60vw;
+    min-height: 40vh;
+}
+
+.pop_item_img{
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.pop_item_main_div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pop_item_stats, .pop_item_stats p{
+    text-align: left;
+    width: 40vw;
+}
+
+.pop_item_img_build{
+    border-radius: 50%;
+    margin: 5px;
+    width: 4vw;
+}

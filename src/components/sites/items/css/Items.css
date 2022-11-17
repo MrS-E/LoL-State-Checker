@@ -1,5 +1,5 @@
 .items{
- margin-top: 2vh;
+    margin-top: 2vh;
 }
 .item_img{
     width: 3vw;
@@ -10,4 +10,29 @@
     border: #223c5b 2px solid;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+@media(max-width: 1000px){
+    .item_img{
+        width: 4vw;
+    }
+}
+@media(max-width: 800px){
+    .item_img{
+        width: 5vw;
+    }
+}
+@media(max-width: 600px){
+    .item_img{
+        width: 6vw;
+    }
+}
+@media(max-width: 500px){
+    .item_img{
+        width: 8vw;
+    }
+}
+@media(max-width: 400px){
+    .item_img{
+        width: 10vw;
+    }
 }
