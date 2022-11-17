@@ -7,7 +7,7 @@ export let champ = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/ch
 export let items_json = "http://ddragon.leagueoflegends.com/cdn/12.22.1/data/en_US/item.json";
 export const queueID = "https://static.developer.riotgames.com/docs/lol/queues.json";
 
-function get_version(){ //TODO make it nicer with arrays and sub-urls
+function get_version(){
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function() {
         let ver = this.responseText.split("\",\"");
@@ -25,7 +25,7 @@ function get_version(){ //TODO make it nicer with arrays and sub-urls
     xmlhttp.send();
 }
 
-//TODO function for nicer link generation not just import (more like api)
+//TODO function for nicer link generation not just import (more like api) with integraded version control
 
 // Images
 export const splash = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";
@@ -97,7 +97,7 @@ export function get_request(get, routing, routing_typ, needed, typ){
             url += api_key;
             break;
         case "header":
-            return ""; //TODO parsing the KEY by header ->  https://stackoverflow.com/questions/34319709/how-to-send-an-http-request-with-a-header-parameter
+            return "";
         default:
             return "";
     }

@@ -3,10 +3,6 @@ import './css/Items.css';
 import useFetch from "../../../hooks/useFetch";
 import {items, items_json} from "../../../other/js/links";
 import ItemsPopUp from "./ItemsPopUp";
-/*
-* TODO Plan: Items with Images sortable after tags/alphabetical clickable like champions with detail view
-*/
-
 
 function Items(){
     const {data, loading} = useFetch(items_json);

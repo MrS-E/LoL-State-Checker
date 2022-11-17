@@ -20,7 +20,7 @@
     border-radius: 10px;
 }
 
-.summoner{ /*TODO  align the same*/
+.summoner{
     justify-content: start;
     right: 0;
     margin-right: 0;
@@ -43,7 +43,7 @@
 
 }
 
-.sum{ /*TODO make summoner a little big bigger*/
+.sum{
     line-height: 1.5vh;
     display: flex;
     padding-left: 1.5vw;
@@ -104,7 +104,7 @@
 }
 
 @media (max-width: 1100px){
-    .sum {/*TODO make summoner a little big bigger*/
+    .sum {
         line-height: 1vh;
         height: 1vh;
         font-size: 1vh;

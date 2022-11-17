@@ -71,7 +71,7 @@ const HomePopUp = (props) => {
                         <h3>{props.summoner}</h3>
                     </div>
                     <div>
-                        <h4>Summoner not found try another Region</h4> {/*TODO autocheck other regions*/}
+                        <h4>Summoner not found try another Region</h4> {/*TODO maybe autocheck other regions*/}
                     </div>
                 </div>
             </div>
