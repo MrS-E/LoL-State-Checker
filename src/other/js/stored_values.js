@@ -3,6 +3,7 @@ import {get_url as urls} from "./links";
 
 
 export function run_local(){
+    localStorage.clear();
     get_version().then(()=>{
         get_queueIDs().then(()=>{
             get_items().then(()=>{
