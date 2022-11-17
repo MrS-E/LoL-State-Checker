@@ -2,12 +2,9 @@ import React, {useState} from 'react';
 import UseFetch from "../../../hooks/useFetch";
 import './css/ChampsPopUp.css'
 import '../../css/PopUp.css'
-import {champ} from "../../../other/js/links";
-import {splash} from "../../../other/js/links";
-import {passiv} from "../../../other/js/links";
-import {spell} from "../../../other/js/links";
 import SpellDescription from "./SpellDescription";
 import Graph from "./Graph";
+import {get_url} from "../../../other/js/links";
 
 const graph_data = (data) => {
     const stats = data.stats;
@@ -86,7 +83,11 @@ const graph_data = (data) => {
 }
 
 const ChampPopUp = (props) => {
-    const {data, loading} = UseFetch(champ + props.champ + ".json");
+    let url = "";
+    if(props.trigger) {
+        url = get_url("champ", (props.champ + ".json"));
+    }
+    const {data, loading} = UseFetch(url);
     const [spellName, changeSpellName] = useState("");
     const [spellDesc, changeSpellDesc] = useState("");
     const [spellTooltip, changeSpellTooltip] = useState("");
@@ -101,7 +102,7 @@ const ChampPopUp = (props) => {
                     </div>
                     <div>
                         <div>
-                            <img className="main_img" alt={"splash_"+champion.id} src={splash+champion.id+"_0.jpg"}/>
+                            <img className="main_img" alt={"splash_"+champion.id} src={get_url("splash",(champion.id+"_0.jpg"))}/>
                             <h2 className="main_title">{champion.name}</h2>
                             <h3 className="main_undertitle">{champion.title}</h3>
                         </div>
@@ -114,7 +115,7 @@ const ChampPopUp = (props) => {
                                 </div>
                                 <div className="row">
                                     {champion.skins.map((x, i) => {
-                                        return(<div className="col-4" key={i}><img src={splash+champion.id+"_"+x.num+".jpg"} className="skin" alt={x.name}/><span className="skin_sub">{x.name}</span></div>);
+                                        return(<div className="col-4" key={i}><img src={get_url("splash", (champion.id+"_"+x.num+".jpg"))} className="skin" alt={x.name}/><span className="skin_sub">{x.name}</span></div>);
                                     })}
                                 </div>
                             </div>
@@ -137,13 +138,13 @@ const ChampPopUp = (props) => {
                                     </button>
                                 </div>
                                 <div className="row stretch_div spell_div">
-                                    <div className="col-2" onClick={() => {changeSpellName(champion.passive.name);changeSpellDesc(champion.passive.description);}}>
-                                        <img className="spell" alt={"spell_"+champion.passive.image.full} src={passiv + champion.passive.image.full}/>
+                                    <div className="col-2" onClick={() => {changeSpellName(champion.passive.name);changeSpellDesc(champion.passive.description);changeSpellTooltip(null);changeSpellTooltip(champion.passive.tooltip)}}>
+                                        <img className="spell" alt={"spell_"+champion.passive.image.full} src={get_url("passiv", (champion.passive.image.full))}/>
                                     </div>
                                     {champion.spells.map((x,i) => {
                                         return(
-                                            <div key={i} className="col-2" onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);changeSpellTooltip(x.tooltip)}}>
-                                                <img className="spell" alt={"spell_"+x.image.full} src={spell + x.image.full}/>
+                                            <div key={i} className="col-2" onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);changeSpellTooltip(null);changeSpellTooltip(x.tooltip)}}>
+                                                <img className="spell" alt={"spell_"+x.image.full} src={get_url("spell", x.image.full)}/>
                                             </div>
                                         );
                                     })}

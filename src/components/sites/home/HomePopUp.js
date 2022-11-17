@@ -2,8 +2,7 @@ import React from 'react';
 import './css/HomePopUp.css'
 import '../../css/PopUp.css'
 import useFetch from "../../../hooks/useFetch";
-import {get_region_from_platform, get_request} from "../../../other/js/links";
-import {summoner_icon} from "../../../other/js/links";
+import {get_region_from_platform, get_request, get_url} from "../../../other/js/links";
 import Matches from "./matches/Matches";
 
 const HomePopUp = (props) => {
@@ -16,7 +15,7 @@ const HomePopUp = (props) => {
     const region = get_region_from_platform(props.region);
 
     if(props.trigger && data){
-        const icon = summoner_icon + data.profileIconId + ".png";
+        const icon = get_url("summoner_icon", (data.profileIconId + ".png"));
         return(
             <div className="popup">
                 <div className="popup-inner home_height_popup">

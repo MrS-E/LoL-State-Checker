@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import './css/Items.css';
 import useFetch from "../../../hooks/useFetch";
-import {items, items_json} from "../../../other/js/links";
+import {get_url} from "../../../other/js/links";
 import ItemsPopUp from "./ItemsPopUp";
 
 function Items(){
-    const {data, loading} = useFetch(items_json);
+    const url = get_url("items_json");
+    const {data, loading} = useFetch(url);
     const [typ, changeTyp] = useState(0);
     const [trigger, setTrigger] = useState(false);
     const [item,changeItem] = useState("")
@@ -115,7 +116,7 @@ function gen(typ, data, setTrigger, changeItem){
 
     Object.keys(item).sort().forEach((d, key) => {
         let split = d.search(/.[A-Z]/g)<0 ? 0 : d.search(/.[A-Z]/g)+1;
-        output.push(<div key={key+"_item"}><h6>{d.splice(split,0," ")}</h6>{item[d].map((x, key)=>{return(<img key={key} onClick={()=>{setTrigger(true); changeItem(x);}} className="item_img" src={items+data.data[x].image.full} alt={data.data[x].name +" "+ x}/>);})}</div>);
+        output.push(<div key={key+"_item"}><h6>{d.splice(split,0," ")}</h6>{item[d].map((x, key)=>{return(<img key={key} onClick={()=>{setTrigger(true); changeItem(x);}} className="item_img" src={get_url("items",(data.data[x].image.full))} alt={data.data[x].name +" "+ x}/>);})}</div>);
     });
     return output
 }

@@ -1,40 +1,74 @@
 import {api_key} from "./key";
 //JSON
-const version = "https://ddragon.leagueoflegends.com/api/versions.json";
-get_version();
-export let champions = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/champion.json";
-export let champ = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/champion/";
-export let items_json = "http://ddragon.leagueoflegends.com/cdn/12.22.1/data/en_US/item.json";
-export const queueID = "https://static.developer.riotgames.com/docs/lol/queues.json";
+//export const version = "https://ddragon.leagueoflegends.com/api/versions.json";
+//export const queueID = "https://static.developer.riotgames.com/docs/lol/queues.json";
 
-function get_version(){
-    const xmlhttp = new XMLHttpRequest();
-    xmlhttp.onload = function() {
-        let ver = this.responseText.split("\",\"");
-        ver = ver[0].split("[\"")[1];
-        champions = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/data/en_US/champion.json";
-        champ = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/data/en_US/champion/";
-        icon = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/champion/";
-        spell = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/spell/";
-        passiv = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/passive/";
-        summoner_icon = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/profileicon/";
-        items = "http://ddragon.leagueoflegends.com/cdn/" + ver + "/img/item/";
-        items_json = "http://ddragon.leagueoflegends.com/cdn/"+ver+"/data/en_US/item.json";
-    }
-    xmlhttp.open("GET",  version);
-    xmlhttp.send();
+//export let champions = "12.17.1/data/en_US/champion.json";
+//export let champ = "http://ddragon.leagueoflegends.com/cdn/12.17.1/data/en_US/champion/";
+//export let items_json = "http://ddragon.leagueoflegends.com/cdn/12.22.1/data/en_US/item.json";
+//Image
+//export const splash = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";
+//export let icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/champion/";
+//export let spell = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/spell/";
+//export let passiv = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/passive/";
+//export let summoner_icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/profileicon/";
+//export let items = "http://ddragon.leagueoflegends.com/cdn/12.21.1/img/item/";
+//export const map="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/";
+
+const language = {}
+
+const prefix = {
+    ddragon:"http://ddragon.leagueoflegends.com/cdn/",
 }
 
-//TODO function for nicer link generation not just import (more like api) with integraded version control
+const main = {
+    "icon" : [prefix.ddragon,0,"/img/champion/"],
+    "spell" : [prefix.ddragon,0,"/img/spell/"],
+    "passiv" : [prefix.ddragon,0,"/img/passive/"],
+    "summoner_icon" : [prefix.ddragon,0,"/img/profileicon/"],
+    "items" : [prefix.ddragon,0,"/img/item/"],
+    "map" : [prefix.ddragon,"6.8.1/img/map/"], //no version
+    "splash" : [prefix.ddragon,"img/champion/splash/"], //no version
 
-// Images
-export const splash = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";
-export let icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/champion/";
-export let spell = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/spell/";
-export let passiv = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/passive/";
-export let summoner_icon = "http://ddragon.leagueoflegends.com/cdn/12.17.1/img/profileicon/";
-export let items = "http://ddragon.leagueoflegends.com/cdn/12.21.1/img/item/";
-export const map="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/";
+    "items_json" : [prefix.ddragon,0,"/data/",0,"/item.json"], //with language (default en_US)
+    "champ" : [prefix.ddragon,0,"/data/",0,"/champion/"],
+    "champions" : [prefix.ddragon,0,"/data/",0,"/champion.json"],
+
+    "queueID" : ["https://static.developer.riotgames.com/docs/lol/queues.json"],
+    "version" : ["https://ddragon.leagueoflegends.com/api/versions.json"],
+}
+
+export function get_url(typ,add,lang){
+    let url="";
+    const length = main[typ].length;
+    url += main[typ][0];
+    if(length===2){
+        url += main[typ][1];
+    }
+    if(length>=3){
+        try{
+            url += localStorage.getItem('version');
+        }catch (e) {
+            url += "12.21.1";
+        }
+        url += main[typ][2];
+    }
+    if(length>=5){
+        if(main[typ][3]===0){
+            if(lang===undefined){
+                url += "en_US";
+            }else{
+                url += language[lang];
+            }
+        }
+        url+=main[typ][4];
+    }
+    if(add!==undefined){
+        url += add;
+    }
+    return url;
+}
+
 
 //API
 const routing_platform = {

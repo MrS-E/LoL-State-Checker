@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../../css/PopUp.css'
 import './css/ItemsPopUp.css'
-import {items} from "../../../other/js/links";
+import {get_url} from "../../../other/js/links";
 
 
 
@@ -22,7 +22,7 @@ const ItemsPopUp = (props) => {
                             <hr/>
                             <div className="pop_item_main_div">
                                 <div>
-                                    <img className="pop_item_img" alt={data[props.item].name} src={items + data[props.item].image.full}/>
+                                    <img className="pop_item_img" alt={data[props.item].name} src={get_url("items", (data[props.item].image.full))}/>
                                     <div>
                                         <h5>Tags:</h5>
                                         {data[props.item].tags.map((d,k)=><span key={k}>{d}<br/></span>)}
@@ -56,11 +56,11 @@ function build(data, props, changeItem, setTrigger){
             <>
                 <h5>Builds into:</h5>
                 {data[props.item].into.map((x, key)=>{
-                    return <img className="pop_item_img_build" key={key} src={items + data[x].image.full} alt={x} onClick={()=>{changeItem(x); setTrigger(true);}}/>;
+                    return <img className="pop_item_img_build" key={key} src={get_url("items", data[x].image.full)} alt={x} onClick={()=>{changeItem(x); setTrigger(true);}}/>;
                 })}
                 <h5>Builds from:</h5>
                 {data[props.item].from.map((x, key)=>{
-                    return <img className="pop_item_img_build" key={key} src={items + data[x].image.full} alt={x}  onClick={()=>{changeItem(x); setTrigger(true);}}/>;
+                    return <img className="pop_item_img_build" key={key} src={get_url("items", data[x].image.full)} alt={x}  onClick={()=>{changeItem(x); setTrigger(true);}}/>;
                 })}
             </>
         );
@@ -69,7 +69,7 @@ function build(data, props, changeItem, setTrigger){
             <>
                 <h5>Builds into:</h5>
                 {data[props.item].into.map((x, key)=>{
-                    return <img className="pop_item_img_build" key={key} src={items + data[x].image.full} alt={x}  onClick={()=>{changeItem(x); setTrigger(true);}}/>;
+                    return <img className="pop_item_img_build" key={key} src={get_url("items", data[x].image.full)} alt={x}  onClick={()=>{changeItem(x); setTrigger(true);}}/>;
                 })}
             </>
         );
@@ -78,7 +78,7 @@ function build(data, props, changeItem, setTrigger){
             <>
                 <h5>Builds from:</h5>
                 {data[props.item].from.map((x, key)=>{
-                    return <img className="pop_item_img_build" key={key} src={items + data[x].image.full} alt={x}  onClick={()=>{changeItem(x); setTrigger(true);}}/>;
+                    return <img className="pop_item_img_build" key={key} src={get_url("items", data[x].image.full)} alt={x}  onClick={()=>{changeItem(x); setTrigger(true);}}/>;
                 })}
             </>
         );
