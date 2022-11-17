@@ -12,17 +12,16 @@ const Match = (props) => {
     const {data,loading} = useFetch(url);
     const [champ_trigger, champ_changeTrigger] = useState(false);
     const [sum_trigger, sum_changeTrigger] = useState(false);
-    const [summonerName_popup, changeSummonerName_popup] = useState(""); /*FIXME ohne DiatotRU immer 403 not allowed, doch bei DiatotRU 404 not found wegen falscher region*/
+    const [summonerName_popup, changeSummonerName_popup] = useState("");
 
-    /*const [queue, changeData] = useState(undefined);
+    const [queue, changeData] = useState(undefined);
     useEffect(()=> {
         try {
             changeData(JSON.parse(localStorage.getItem('queues')));
         } catch (e) {
 
         }
-    }, [localStorage.getItem('queues')])*/
-    const queue = require('../../../../other/files/queue.json'); //TODO use later with stored values
+    }, [localStorage.getItem('queues')]);
 
     if (loading) return <h6>Loading</h6>;
     if(data && queue) {
