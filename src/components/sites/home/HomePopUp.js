@@ -5,7 +5,7 @@ import useFetch from "../../../hooks/useFetch";
 import {get_region_from_platform, get_request, get_url} from "../../../other/js/links";
 import Matches from "./matches/Matches";
 
-const HomePopUp = (props) => {
+const  HomePopUp =  (props) => {
     let url;
     if(props.trigger) url = get_request("summoner_by_name", props.region, "platform", [props.summoner], "query");
     const {data, loading} = useFetch(url);
@@ -78,5 +78,6 @@ const HomePopUp = (props) => {
         return "";
     }
 };
+
 
 export default HomePopUp;
