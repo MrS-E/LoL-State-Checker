@@ -19,6 +19,7 @@ const main = {
 
     "queueID" : ["https://static.developer.riotgames.com/docs/lol/queues.json"],
     "version" : ["https://ddragon.leagueoflegends.com/api/versions.json"],
+    "map_json" : ["https://static.developer.riotgames.com/docs/lol/maps.json"],
 }
 
 export function get_url(typ,add,lang){

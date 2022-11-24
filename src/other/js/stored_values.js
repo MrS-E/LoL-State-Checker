@@ -3,12 +3,18 @@ import {get_url as urls} from "./links";
 
 
 export function run_local(){
-    localStorage.clear();
+    /*localStorage.removeItem('version');
+    localStorage.removeItem('champion');
+    localStorage.removeItem('items_json');
+    localStorage.removeItem('queueID');
+    localStorage.removeItem('maps');*/
     get_version().then(()=>{
         get_queueIDs().then(()=>{
             get_items().then(()=>{
                 get_champions().then(()=>{
-                    console.log("loaded to localStorage")
+                    get_map().then(()=> {
+                        console.log("loaded to localStorage")
+                    })
                 })
             })
         })
@@ -34,6 +40,11 @@ async function get_items(){
 async function get_queueIDs(){
     const queues = await get_url(urls("queueID"));
     localStorage.setItem('queues', JSON.stringify(queues));
+}
+
+async function get_map(){
+    const maps = await get_url(urls("map_json"));
+    localStorage.setItem('maps', JSON.stringify(maps));
 }
 
 function get_url(url){
