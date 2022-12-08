@@ -1,14 +1,22 @@
-import React, {useRef, useState} from 'react';
-import {get_url} from "../../../other/js/links";
+import React, {useState} from 'react';
+import './css/Quitz.css'
 import QuitzItem from "./types/QuitzItem";
- //first Design
+
 function Quitz() {
     const [output, changeOutput] = useState([]);
-
     return (
-        <div>
+        <div className={"quitz"}>
             <QuitzItem changeOutput={changeOutput} output={output}/>
-            <div></div>
+            <div className={"output_print_quitz"}>
+                {output.map((d, key) =>{
+                    console.log(d)
+                    if(d[4]) {
+                        return(<div key={key} className={"win"}><img src={d[1]} alt={d[2]}/> <span>{d[2]}</span></div>);
+                    }else{
+                        return(<div key={key} className={"lose"}><img src={d[1]} alt={d[2]}/> <span>{d[2]}</span></div>);
+                    }
+                })}
+            </div>
         </div>
     );
 }

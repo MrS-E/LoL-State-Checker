@@ -1,0 +1,31 @@
+#item_quitz_select{
+    width: 15vw;
+    height: 4vh;
+    margin-bottom: 5px;
+    text-align: center;
+    border: 1px solid ;
+    font-size: 2vh;
+}
+
+.image_item_quitz_select{
+    width:  15vw;
+    height: 15vw;
+    margin-bottom: 5px;
+}
+
+.item_quitz_select{
+    width: 15vw;
+    margin-right: 30px;
+}
+.input_item_quitz_btn{
+    text-align: center;
+    cursor: pointer;
+    font-size: 2vh;
+    height: 4vh;
+    width: 15vw;
+    border: 1px solid black;
+}
+
+.input_item_quitz_btn:focus{
+
+}

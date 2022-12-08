@@ -1,0 +1,30 @@
+.win{
+    background: blue;
+}
+
+.lose{
+    background: red;
+}
+
+.win, .lose{
+    line-height: 5vh;
+    margin-bottom: 5px;
+}
+
+.quitz_anw{
+    text-align: right;
+    display: block;
+}
+.quitz{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+}
+
+.output_print_quitz span{
+    margin-right: 10px;
+}
+
+.output_print_quitz img{
+    margin-right: 10px;
+}

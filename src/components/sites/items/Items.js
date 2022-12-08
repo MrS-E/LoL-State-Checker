@@ -80,9 +80,12 @@ function get_items_by_tags(data){
         MagicResist: [],
     }
     Object.keys(data.data).forEach((d)=>{
-        data.data[d].tags.forEach((tag)=>{
-            items_by_tag[tag].push(d);
-        })
+        let keys = Object.keys(data.data[d])
+        if(!keys.includes("requiredChampion")&&!keys.includes("requiredAlly")) {
+            data.data[d].tags.forEach((tag) => {
+                items_by_tag[tag].push(d);
+            })
+        }
     })
     Object.keys(items_by_tag).forEach(t=>{
         items_by_tag[t] = [...new Set(items_by_tag[t])];
@@ -96,8 +99,11 @@ function get_items_by_letter(data){
          "" : [],
     };
     let items_temp=[];
-    Object.keys(data.data).forEach((d)=>{
-        items_temp.push([data.data[d].name, d]);
+    Object.keys(data.data).forEach((d)=> {
+        console.log(d, Object.keys(data.data[d]))
+        if (!Object.keys(data.data[d]).includes("requiredChampion") && !Object.keys(data.data[d]).includes("requiredAlly")) {
+            items_temp.push([data.data[d].name, d]);
+        }
     })
     items_temp =  [...new Set(items_temp.sort((a,b)=>{
         if(a[0]<b[0]){
