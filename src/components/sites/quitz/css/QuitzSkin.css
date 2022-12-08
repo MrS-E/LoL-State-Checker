@@ -45,6 +45,13 @@
     }
 }
 
+@media (max-width: 770px) {
+    .skin_quitz_input input, .skin_quitz_input button, .skin_quitz_image{
+        width: 40vw;
+    }
+
+}
+
 @media (max-width: 660px){
     .skin_quitz_input input, .skin_quitz_image, .skin_quitz_input button{
         width: 80vw;

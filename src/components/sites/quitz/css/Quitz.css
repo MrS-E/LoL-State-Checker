@@ -7,7 +7,7 @@
 }
 
 .win, .lose{
-    line-height: 5vh;
+
     margin-bottom: 5px;
 }
 
@@ -23,14 +23,24 @@
 
 .output_print_quitz span{
     margin-right: 10px;
-}
-
-.output_print_quitz img{
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .skin_quitz{
     width: 15vw;
+}
+@media (max-width: 770px) {
+    .skin_quitz, .output_print_quitz{
+        width: 40vw;
+    }
+
+   .win, .lose{
+       word-wrap: break-word;
+       display: flex;
+    }
+    .output_print_quitz span{
+        display: block;
+    }
 }
 
 @media (max-width: 660px) {
@@ -51,5 +61,7 @@
     .quitz{
         display: flow;
     }
-
+    .skin_quitz{
+        width: 40vw;
+    }
 }

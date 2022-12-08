@@ -27,6 +27,16 @@
     border: 1px solid black;
 }
 
+@media (max-width: 770px) {
+    #item_quitz_select, .input_item_quitz_btn, .item_quitz_select, .image_item_quitz_select{
+        width: 40vw;
+    }
+
+    .image_item_quitz_select{
+        height: 40vw;
+    }
+}
+
 @media (max-width: 660px){
     #item_quitz_select, .input_item_quitz_btn, .item_quitz_select, .image_item_quitz_select {
         width: 80vw;

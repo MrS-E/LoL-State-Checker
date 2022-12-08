@@ -8,7 +8,7 @@ function Quitz() {
     return (
         <div className={"quitz"}>
             <div className={"input_print_quitz"}>
-                {skin(changeOutput, output)}
+                {item(changeOutput, output)}
             </div>
             <div className={"output_print_quitz"}>
                 {output.map((d, key) =>{
