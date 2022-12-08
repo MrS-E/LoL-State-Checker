@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import './css/Quitz.css'
 import QuitzItem from "./types/QuitzItem";
+import QuitzSkin from "./types/QuitzSkin";
 
 function Quitz() {
     const [output, changeOutput] = useState([]);
     return (
         <div className={"quitz"}>
-            <QuitzItem changeOutput={changeOutput} output={output}/>
+            {skin(changeOutput, output)}
             <div className={"output_print_quitz"}>
                 {output.map((d, key) =>{
                     console.log(d)
@@ -34,12 +35,24 @@ function splash(){
 
 }
 
-function skin(){
-
+function skin(changeOutput,output){
+ return(
+     <>
+     <QuitzSkin output={output} changeOutput={changeOutput}/>
+     </>
+ );
 }
 
 function map(){
  //maybe not possible because not all images are available
+}
+
+function item(changeOutput, output){
+    return(
+        <>
+            <QuitzItem changeOutput={changeOutput} output={output}/>
+        </>
+    );
 }
 
 export function random(max, min){
