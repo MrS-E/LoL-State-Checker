@@ -11,14 +11,14 @@
     margin-bottom: 5px;
 }
 
-.quitz_anw{
-    text-align: right;
-    display: block;
-}
 .quitz{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin-top: 5px;
+}
+
+.output_print_quitz{
+    width: 50vw;
 }
 
 .output_print_quitz span{
@@ -27,4 +27,29 @@
 
 .output_print_quitz img{
     margin-right: 10px;
+}
+
+.skin_quitz{
+    width: 15vw;
+}
+
+@media (max-width: 660px) {
+    .output_print_quitz{
+        width: 80vw;
+        position: relative;
+        display: block;
+        margin-left: calc((100% - 80vw)/2);
+        margin-top: 20px;
+    }
+    .input_print_quitz{
+        width: 80vw;
+        margin-left: calc((100% - 80vw)/2);
+        position: relative;
+        display: block;
+
+    }
+    .quitz{
+        display: flow;
+    }
+
 }

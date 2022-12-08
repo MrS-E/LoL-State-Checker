@@ -1,0 +1,53 @@
+.skin_quitz_image{
+    width: 30vw;
+    margin-bottom: 5px;
+    //filter: blur(4px);
+    cursor: none;
+}
+/*
+.skin_quitz_image:hover{
+    animation-name: image_blur;
+    animation-duration: 5s;
+}
+
+@keyframes image_blur{
+    0% { filter: blur(4px);}
+    100% { filter: blur(0px);}
+}*/
+
+.skin_quitz_input input{
+    width: 22vw;
+    margin-right: 5px;
+    height: 4vh;
+    margin-bottom: 5px;
+    outline: none;
+    border: 1px solid black;
+}
+
+.skin_quitz_input button{
+    width: calc(8vw - 5px);
+}
+.skin_quiz{
+    margin-right: 1vw;
+}
+.skin_quitz_btn{
+    text-align: center;
+    cursor: pointer;
+    font-size: 2vh;
+    height: 4vh;
+    width: 15vw;
+    border: 1px solid black;
+}
+
+@media (max-width: 850px){
+    .skin_quitz_input input, .skin_quitz_input button{
+        width: 30vw;
+    }
+}
+
+@media (max-width: 660px){
+    .skin_quitz_input input, .skin_quitz_image, .skin_quitz_input button{
+        width: 80vw;
+    }
+
+}

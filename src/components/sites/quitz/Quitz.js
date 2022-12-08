@@ -7,14 +7,17 @@ function Quitz() {
     const [output, changeOutput] = useState([]);
     return (
         <div className={"quitz"}>
-            {skin(changeOutput, output)}
+            <div className={"input_print_quitz"}>
+                {skin(changeOutput, output)}
+            </div>
             <div className={"output_print_quitz"}>
                 {output.map((d, key) =>{
-                    console.log(d)
+                    //console.log(d)
+
                     if(d[4]) {
-                        return(<div key={key} className={"win"}><img src={d[1]} alt={d[2]}/> <span>{d[2]}</span></div>);
+                        return(<div key={key} className={"win"}><img className={(d[3]+"_quitz")} src={d[1]} alt={d[2]}/> <span>{d[2]}</span></div>);
                     }else{
-                        return(<div key={key} className={"lose"}><img src={d[1]} alt={d[2]}/> <span>{d[2]}</span></div>);
+                        return(<div key={key} className={"lose"}><img className={(d[3]+"_quitz")} src={d[1]} alt={d[2]}/> <span>{d[2]}</span></div>);
                     }
                 })}
             </div>
@@ -38,7 +41,7 @@ function splash(){
 function skin(changeOutput,output){
  return(
      <>
-     <QuitzSkin output={output} changeOutput={changeOutput}/>
+        <QuitzSkin output={output} changeOutput={changeOutput}/>
      </>
  );
 }

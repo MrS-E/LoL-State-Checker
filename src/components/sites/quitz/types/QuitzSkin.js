@@ -2,41 +2,43 @@ import React, {useEffect, useRef, useState} from 'react';
 import {random} from "../Quitz";
 import {get_url} from "../../../../other/js/links";
 import axios from "axios";
+import "../css/QuitzSkin.css"
 
 function QuitzSkin(props) {
     const ans = useRef(null);
     const champs = JSON.parse(localStorage.getItem('champions'));
     const [skin, changeSkin] = useState(null);
-    const [id, changeId] = useState(null);
     const [img, changeImg] = useState(null);
 
     useEffect(()=>{
-        select_skin(champs).then(({skin, img, id})=>{
+        select_skin(champs).then(([skin, img])=>{
             changeSkin(skin);
             changeImg(img);
-            changeId(id)
+            console.log(skin, img)
         })
     }, [props.output])
 
     const handleClick = () => {
-        console.log(ans.current.value);
+        console.log(ans.current.value, skin);
         if(ans.current.value === skin){
-            props.changeOutput(oldArray => [[ans.current.value, img, skin, id, true], ...oldArray]);
+            props.changeOutput(oldArray => [[ans.current.value, img, skin, "skin", true], ...oldArray]);
         }else{
-            props.changeOutput(oldArray => [[ans.current.value, img, skin, id, false], ...oldArray]);
+            props.changeOutput(oldArray => [[ans.current.value, img, skin, "skin", false], ...oldArray]);
         }
     }
 
     return(
-        <div>
-            <img src={img} alt={skin}/>
-            <div>
+        <div className={"skin_quiz"}>
+            <img className={"skin_quitz_image"} src={img} alt={skin}/>
+            <div className={"skin_quitz_input"}>
                 <input type="text" ref={ans}/>
-                <button onClick={handleClick}>Check</button>
+                <button className={"skin_quitz_btn"} onClick={handleClick}>Check</button>
             </div>
         </div>
     );
 }
+
+
 
 async function select_skin(champs){
     if(champs !== undefined) {
@@ -53,7 +55,8 @@ async function select_skin(champs){
         console.log(img);
         const skin_name = skin.name;
         const skin_id = skin.id;
-        return({skin_name, img, skin_id});
+        console.log(skin_name, skin_id)
+        return([skin_name, img]);
     }
 }
 
