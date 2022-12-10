@@ -1,19 +1,8 @@
 .skin_quitz_image{
     width: 30vw;
     margin-bottom: 5px;
-    //filter: blur(4px);
     cursor: none;
 }
-/*
-.skin_quitz_image:hover{
-    animation-name: image_blur;
-    animation-duration: 5s;
-}
-
-@keyframes image_blur{
-    0% { filter: blur(4px);}
-    100% { filter: blur(0px);}
-}*/
 
 .skin_quitz_input input{
     width: 22vw;
@@ -22,6 +11,10 @@
     margin-bottom: 5px;
     outline: none;
     border: 1px solid black;
+}
+
+.skin_quitz_input{
+    display: flex;
 }
 
 .skin_quitz_input button{
@@ -39,9 +32,24 @@
     border: 1px solid black;
 }
 
-@media (max-width: 850px){
+@media (max-width: 1050px){
+    .skin_quitz_input input, .skin_quitz_input button, .skin_quitz_image{
+        width: 40vw;
+    }
+    .skin_quitz_input button{
+        width: calc(20vw - 5px);
+    }
+    .skin_quitz_input input{
+        width: 20vw;
+    }
+}
+
+/*@media (max-width: 850px){
     .skin_quitz_input input, .skin_quitz_input button{
         width: 30vw;
+    }
+    .skin_quitz_input{
+        display: initial;
     }
 }
 
@@ -49,8 +57,7 @@
     .skin_quitz_input input, .skin_quitz_input button, .skin_quitz_image{
         width: 40vw;
     }
-
-}
+}*/
 
 @media (max-width: 660px){
     .skin_quitz_input input, .skin_quitz_image, .skin_quitz_input button{

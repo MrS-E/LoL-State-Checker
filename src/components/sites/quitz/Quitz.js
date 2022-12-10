@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import './css/Quitz.css'
 import QuitzItem from "./types/QuitzItem";
 import QuitzSkin from "./types/QuitzSkin";
+import QuitzChampionSplash from "./types/QuitzChampionSplash";
 
 function Quitz() {
     const [output, changeOutput] = useState([]);
     return (
         <div className={"quitz"}>
             <div className={"input_print_quitz"}>
-                {item(changeOutput, output)}
+                {choose(changeOutput, output)}
             </div>
             <div className={"output_print_quitz"}>
                 {output.map((d, key) =>{
@@ -25,17 +26,25 @@ function Quitz() {
     );
 }
 
-
-function champion(){
-
+function choose(changeOutput, output){
+    const num = random(3,0);
+    console.log(num)
+    switch (num){
+        case 0:
+            return item(changeOutput, output);
+        case 1:
+            return skin(changeOutput, output);
+        case 2:
+            return splash(changeOutput, output);
+    }
 }
 
-function spell(){
-
-}
-
-function splash(){
-
+function splash(changeOutput, output){
+    return(
+        <>
+            <QuitzChampionSplash output={output} changeOutput={changeOutput}/>
+        </>
+    )
 }
 
 function skin(changeOutput,output){
@@ -46,10 +55,6 @@ function skin(changeOutput,output){
  );
 }
 
-function map(){
- //maybe not possible because not all images are available
-}
-
 function item(changeOutput, output){
     return(
         <>
@@ -57,6 +62,15 @@ function item(changeOutput, output){
         </>
     );
 }
+
+/*
+function map(){
+ //maybe not possible because not all images are available
+}
+
+function spell(changeOutput, output){
+
+}*/
 
 export function random(max, min){
     return Math.floor(Math.random() * max) + min;

@@ -8,7 +8,11 @@ function QuitzSkin(props) {
     const ans = useRef(null);
     const champs = JSON.parse(localStorage.getItem('champions'));
     const [skin, changeSkin] = useState(null);
+    const [all_skins, addAllSkins] = useState([]);
     const [img, changeImg] = useState(null);
+    all_skins_select(champs).then((skinis)=>{
+        addAllSkins(skinis);
+    });
 
     useEffect(()=>{
         select_skin(champs).then(([skin, img])=>{
@@ -25,20 +29,45 @@ function QuitzSkin(props) {
         }else{
             props.changeOutput(oldArray => [[ans.current.value, img, skin, "skin", false], ...oldArray]);
         }
+        ans.current.value = "";
     }
 
     return(
         <div className={"skin_quiz"}>
             <img className={"skin_quitz_image"} src={img} alt={skin}/>
             <div className={"skin_quitz_input"}>
-                <input type="text" ref={ans}/>
+                <input type="text" ref={ans} list={"list"}/>
                 <button className={"skin_quitz_btn"} onClick={handleClick}>Check</button>
+                <datalist id={"list"}>
+                    {all_skins.map((d, key)=>{
+                        return(<option key={key} value={d}>{d}</option>);
+                    })}
+                </datalist>
             </div>
         </div>
     );
 }
 
-
+async function all_skins_select(champs){
+    if(champs !== undefined) {
+        let skins = []
+        for (const d of Object.keys(champs.data)) {
+            await axios.get(get_url("champ", d + ".json")).then(
+                (res) => {
+                    for (const x of res.data.data[d].skins){
+                        if(x.name!=="default"){
+                            //console.log(x.name);
+                            skins.push(x.name);
+                        }
+                    }
+                }
+            )
+        }
+        return skins;
+    }else{
+        return [];
+    }
+}
 
 async function select_skin(champs){
     if(champs !== undefined) {

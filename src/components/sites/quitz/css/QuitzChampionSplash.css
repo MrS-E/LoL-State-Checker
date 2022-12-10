@@ -1,0 +1,119 @@
+:root {
+    --width: 30vw;
+    --height: calc(var(--width) * 0.5901428571428571);
+}
+
+.champion_quitz_image{
+    width: 30vw;
+    margin-bottom: 5px;
+    cursor: wait;
+}
+
+.champion_quitz_image{
+    width: calc(var(--width)/10);
+    height: calc(var(--height));
+    object-fit: cover;
+    object-position: 0 0;
+}
+
+.champion_quitz_image:hover{
+    animation-name: image_cut_width;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes image_cut_width {
+    0% {width: calc(var(--width)/10);}
+    50% {width: var(--width);}
+    100% {width: calc(var(--width)/10);}
+}
+
+@keyframes image_cut_height {
+    0% {height: calc(var(--height)/10);}
+    50% {height: var(--height);}
+    100% {height: calc(var(--height)/10);}
+}
+
+/*
+.champion_quitz_image{
+    filter: blur(20px);
+}
+
+.champion_quitz_image:hover{
+    animation-name: image_blur;
+    animation-duration: 40s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes image_blur{
+    0% { filter: blur(20px);}
+    40% { filter: blur(13px)}
+    50% { filter: blur(0px);}
+    60% { filter: blur(13px)}
+    100% { filter: blur(20px);}
+}
+*/
+
+.champion_quitz_input input{
+    width: 22vw;
+    margin-right: 5px;
+    height: 4vh;
+    margin-bottom: 5px;
+    outline: none;
+    border: 1px solid black;
+}
+
+.champion_quitz_input{
+    display: flex;
+}
+
+.champion_quitz_input button{
+    width: calc(8vw - 5px);
+}
+.champion_quiz{
+    margin-right: 1vw;
+}
+.champion_quitz_btn{
+    text-align: center;
+    cursor: pointer;
+    font-size: 2vh;
+    height: 4vh;
+    width: 15vw;
+    border: 1px solid black;
+}
+
+@media (max-width: 1050px){
+    .champion_quitz_input input, .champion_quitz_input button, .champion_quitz_image{
+        width: 40vw;
+    }
+    .champion_quitz_input button{
+        width: calc(20vw - 5px);
+    }
+    .champion_quitz_input input{
+        width: 20vw;
+    }
+}
+
+
+/*@media (max-width: 850px){
+    .champion_quitz_input input, .champion_quitz_input button{
+        width: 30vw;
+    }
+    .champion_quitz_input{
+        display: initial;
+    }
+}
+
+@media (max-width: 770px) {
+    .champion_quitz_input input, .champion_quitz_input button, .champion_quitz_image{
+        width: 40vw;
+    }
+
+}*/
+
+@media (max-width: 660px){
+    .champion_quitz_input input, .champion_quitz_image, .champion_quitz_input button{
+        width: 80vw;
+    }
+
+}
