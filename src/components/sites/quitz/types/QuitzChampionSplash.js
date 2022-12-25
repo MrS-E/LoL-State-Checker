@@ -15,12 +15,10 @@ function QuitzChampionSplash(props) {
             changeChampion(champ);
             changeImg(img);
             addAllChamps(ch);
-            console.log(champ, img)
         })
     }, [props.output])
 
     const handleClick = () => {
-        console.log(ans.current.value, champion);
         if(ans.current.value === champion){
             props.changeOutput(oldArray => [[ans.current.value, img, champion, "skin", true], ...oldArray]);
         }else{
@@ -50,9 +48,7 @@ function QuitzChampionSplash(props) {
 async function select_champ(champs){
     if(champs !== undefined) {
         champs = champs.data
-        //console.log(champs);
         const champion = Object.keys(champs)[random(Object.keys(champs).length,0)];
-        console.log(champion);
         const img = get_url("splash",(champion+"_0.jpg"));
         return [champion, img, Object.keys(champs)];
     }else{

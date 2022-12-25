@@ -21,22 +21,6 @@ const Match = (props) => {
         }
     }, [localStorage.getItem('queues')])
 
-    /*useEffect(() => {
-
-        const handleResize = () => {
-            console.log("resized")
-            document.documentElement.style.setProperty('--game-width', div.current.offsetWidth+"px");
-            document.documentElement.style.setProperty('--game-height', div.current.offsetHeight+"px");
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-
-    });*/
-
     if(data && queue) {
         const game={
             summoner_blue: [],

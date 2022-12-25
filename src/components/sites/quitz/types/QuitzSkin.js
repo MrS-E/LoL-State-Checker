@@ -18,12 +18,10 @@ function QuitzSkin(props) {
         select_skin(champs).then(([skin, img])=>{
             changeSkin(skin);
             changeImg(img);
-            console.log(skin, img)
         })
     }, [props.output])
 
     const handleClick = () => {
-        console.log(ans.current.value, skin);
         if(ans.current.value === skin){
             props.changeOutput(oldArray => [[ans.current.value, img, skin, "skin", true], ...oldArray]);
         }else{
@@ -56,7 +54,6 @@ async function all_skins_select(champs){
                 (res) => {
                     for (const x of res.data.data[d].skins){
                         if(x.name!=="default"){
-                            //console.log(x.name);
                             skins.push(x.name);
                         }
                     }
@@ -73,18 +70,12 @@ async function select_skin(champs){
     if(champs !== undefined) {
         const champion = await axios.get(get_url("champ", (Object.keys(champs.data)[random(Object.keys(champs.data).length - 1, 0)] + ".json"))).then(
             (res) => {
-                //console.log(res.data.data)
                 return res.data.data;
             }
         )
-        console.log(Object.keys(champion)[0]);
         const skin = champion[Object.keys(champion)[0]].skins[random(champion[Object.keys(champion)[0]].skins.length-2,1)];
-        console.log(skin);
         const img = get_url("splash", (Object.keys(champion)[0]+"_"+skin.num+".jpg"));
-        console.log(img);
         const skin_name = skin.name;
-        const skin_id = skin.id;
-        console.log(skin_name, skin_id)
         return([skin_name, img]);
     }
 }

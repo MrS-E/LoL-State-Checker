@@ -24,7 +24,6 @@ export function run_local(){
 async function get_version(){
     const version = await get_url(urls("version"));
     localStorage.setItem('version', version[0] );
-    //console.log(localStorage.getItem('version'));
 }
 
 async function get_champions(){

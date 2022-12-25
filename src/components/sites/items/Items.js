@@ -100,7 +100,6 @@ function get_items_by_letter(data){
     };
     let items_temp=[];
     Object.keys(data.data).forEach((d)=> {
-        console.log(d, Object.keys(data.data[d]))
         if (!Object.keys(data.data[d]).includes("requiredChampion") && !Object.keys(data.data[d]).includes("requiredAlly")) {
             items_temp.push([data.data[d].name, d]);
         }
@@ -140,7 +139,7 @@ String.prototype.splice = function(idx, rem, str) {
 
 export default Items;
 
-/*
+/* TODO evtl. remove this comment
 Tags;
 "Boots"
 "ManaRegen"
@@ -173,8 +172,6 @@ Tags;
 "Slow"
 "GoldPer"
 "MagicResist"
-
-
 mit:
 
     if(data) {
@@ -182,8 +179,6 @@ mit:
         Object.values(data.data).forEach((d) => {
             d.tags.forEach(d => i.push(d))
         })
-        console.log(i);
         let uniq = [...new Set(i)];
-        console.log(uniq);
     }
 * */

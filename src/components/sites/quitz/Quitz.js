@@ -13,7 +13,6 @@ function Quitz() {
             </div>
             <div className={"output_print_quitz"}>
                 {output.map((d, key) =>{
-                    //console.log(d)
 
                     if(d[4]) {
                         return(<div key={key} className={"win"}><img className={(d[3]+"_quitz")} src={d[1]} alt={d[2]}/> <span>{d[2]}</span></div>);
@@ -28,7 +27,6 @@ function Quitz() {
 
 function choose(changeOutput, output){
     const num = random(3,0);
-    console.log(num)
     switch (num){
         case 0:
             return item(changeOutput, output);

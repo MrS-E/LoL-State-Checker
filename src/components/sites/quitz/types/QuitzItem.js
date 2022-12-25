@@ -8,16 +8,12 @@ function QuitzItem(props) {
     const ans = useRef(null);
     const keys = sort_items_alphabet(JSON.parse(localStorage.getItem('items')));
     const items = JSON.parse(localStorage.getItem('items'));
-    console.log(keys);
     const {check, img} = item(items, keys);
 
     const handleClick = () => {
-        console.log(ans.current.value);
         if (items.data[ans.current.value].name === check) {
-            console.log([items.data[ans.current.value].name, img, check, ans.current.value, true])
             props.changeOutput(oldArray => [[items.data[ans.current.value].name, img, check, "item", true], ...oldArray]);
         } else {
-            console.log([items.data[ans.current.value].name, img, check, ans.current.value, false])
             props.changeOutput(oldArray => [[items.data[ans.current.value].name, img, check, "item", false], ...oldArray]);
         }
     }
@@ -41,7 +37,6 @@ function sort_items_alphabet(data) {
         let items = [];
         let items_temp = [];
         Object.keys(data.data).forEach((d) => {
-            //console.log(d, Object.keys(data.data[d]))
             if (!Object.keys(data.data[d]).includes("requiredChampion") && !Object.keys(data.data[d]).includes("requiredAlly")) {
                 items_temp.push([data.data[d].name, d]);
             }
