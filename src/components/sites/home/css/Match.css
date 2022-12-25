@@ -1,3 +1,8 @@
+:root{
+    --game-width: 55vw;
+    --game-height: 55vw;
+}
+
 .c100{
     border: blue .5vw solid;
 }
@@ -82,26 +87,48 @@
     display: flex;
     justify-content: space-evenly;
 }
+
 .item{
     width: 5vh;
     padding-bottom: 0.25vh;
     padding-right: 0.25vh;
 }
+
 .stats_text{
     text-align: left;
     font-size: 1.5vh;
     padding-left: 0.5vw;
 }
 
-.tk1{ /*TODO make design for multikills*/
-
+/* not good
+.tk1{
+    outline: .3vw blue solid;
+    animation: triplekill infinite 2s;
+    margin-top: .8vh;
+    margin-bottom: .8vh;
+}
+@keyframes triplekill {
+    0%{ border-color: blue;}
+    50%{ border-color: red;}
+    100%{ border-color: blue;}
 }
 .qk1{
-
+    background: linear-gradient(180deg, rgba(131, 58, 180, 0.36) 0%, rgba(253, 29, 29, 0.36) 20%, rgba(252, 176, 69, 0.36) 100%); ;
 }
 .pk1{
-
+    margin-top: calc(var(--game-width)*0.296127562642369 - 10px);
+    margin-bottom:calc(var(--game-width)*0.2945205479452055 - 5px) ;
 }
+.pk1:after{
+    position: absolute;
+    content: '';
+    width: var(--game-width);
+    height: calc(var(--game-height) + ((var(--game-width))*0.2945205479452055 - 3%) +  (var(--game-width)*0.296127562642369 - .75%));
+    pointer-events: none;
+    background: url("./img/pk1_0.png") bottom no-repeat, url("./img/pk1_2.png") top no-repeat, url("./img/pk1_1.png");
+    background-size: calc(var(--game-width) - 10%) calc((var(--game-width))*0.2945205479452055), var(--game-width) calc(var(--game-width)*0.296127562642369), var(--game-width) var(--game-height) ;
+    transform: translate(-5%, -30%);
+}*/
 
 @media (max-width: 1100px){
     .sum {
@@ -125,6 +152,7 @@
         margin-right: 1vw;
     }
 }
+
 @media(max-width: 900px){
     .item{
         display: none;
@@ -132,23 +160,31 @@
 
 }
 
-@media (max-width: 800px){
-    .summoner{
+@media (max-width: 800px) {
+    .summoner {
         display: none;
     }
-    .stats{
+
+    .stats {
         display: none;
     }
-    .champ_img{
+
+    .kill {
+        display: none;
+    }
+
+    .champ_img {
         width: 7vw;
         height: auto;
         padding-top: 2vh;
 
     }
-    .champ{
+
+    .champ {
         padding-right: 4vw;
     }
-    .KDA{
+
+    .KDA {
         width: 7vw;
     }
 }
@@ -156,6 +192,10 @@
 @media(max-width: 700px){
     .map{
         display: none;
+    }
+    .games{
+        outline: none;
+        animation: none;
     }
 }
 
@@ -174,5 +214,11 @@
     }
     .KDA strong{
         padding-right: 7px;
+    }
+}
+
+@media(max-width: 450px){
+    .KDA{
+        display: none;
     }
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {get_request, get_url} from "../../../../other/js/links";
 import useFetch from "../../../../hooks/useFetch";
 import '../css/Match.css'
@@ -8,6 +8,7 @@ import spacer1 from "../../../../other/files/spacer1.png";
 
 /*TODO wird irgendwie 4mal ausgeführt*/
 const Match = (props) => {
+    const div = useRef(null);
     const url = get_request("match_by_id",props.region,"region",[props.id],"query");
     const {data,loading} = useFetch(url);
     const [champ_trigger, champ_changeTrigger] = useState(false);
@@ -22,6 +23,22 @@ const Match = (props) => {
 
         }
     }, [localStorage.getItem('queues')])
+
+    useEffect(() => {
+
+        const handleResize = () => {
+            console.log("resized")
+            document.documentElement.style.setProperty('--game-width', div.current.offsetWidth+"px");
+            document.documentElement.style.setProperty('--game-height', div.current.offsetHeight+"px");
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+    });
 
     if (loading) return <h6>Loading</h6>;
     if(data && queue) {
@@ -62,9 +79,10 @@ const Match = (props) => {
 
         }
         const search = queue.find((qu) => qu.queueId === data.info.queueId);
+
         return (
             <>
-                <div className={game.className + " games " + game.triplekill + " " + game.quatrakill + " " + game.pentakill} id={props.id}>
+                <div ref={div} className={game.className + " games " + game.triplekill + " " + game.quatrakill + " " + game.pentakill} id={props.id}>
                     <div className="match_title">
                         {/*<h6>{data.info.gameMode}</h6>*/}
                         <h6 className="title">{search.description.replace(" games", "").replace("5v5 ", "")}</h6>
@@ -85,6 +103,7 @@ const Match = (props) => {
                     <div className="champ">
                         <img src={get_url("icon", (game.champion + ".png"))} className="rounded-circle icon champ_img" alt={game.champion} onClick={()=>champ_changeTrigger(true)}/>
                         <div>
+                            <Kill game={game}/>
                             <p className="KDA"><strong>KDA</strong><br/>{game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
                         </div>
                     </div>
@@ -103,6 +122,19 @@ const Match = (props) => {
         );
     }
 };
+
+const Kill = (props) =>{
+    const game = props.game;
+    if(game.triplekill){
+        return <span className="kill">Triplekill</span>;
+    }else if(game.quatrakill){
+        return <span className="kill">Quatrakill</span>;
+    }else if(game.pentakill){
+        return <span className="kill">Pentakill</span>;
+    }else{
+        return "";
+    }
+}
 //team 200 read side
 //team 100 blue side
 
