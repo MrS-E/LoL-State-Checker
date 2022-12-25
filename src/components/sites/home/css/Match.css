@@ -68,6 +68,7 @@
     width: 7vh;
     height: auto;
     padding-top: 2vh;
+    cursor: pointer;
 }
 
 .champ{

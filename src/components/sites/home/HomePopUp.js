@@ -1,16 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './css/HomePopUp.css'
 import '../../css/PopUp.css'
-import useFetch from "../../../hooks/useFetch";
 import {get_region_from_platform, get_request, get_url} from "../../../other/js/links";
 import Matches from "./matches/Matches";
+import axios from "axios";
+import WinGraph from "./WinGraph";
 
 const  HomePopUp =  (props) => {
-    let url;
-    if(props.trigger) url = get_request("summoner_by_name", props.region, "platform", [props.summoner], "query");
-    const {data, loading} = useFetch(url);
-    const games_num=10;
-    const region = get_region_from_platform(props.region);
+    const [data, setSumData] = useState(undefined);
+    const [games, setGames] = useState([])
+    const [loading, setLoading] = useState(true);
+    const [wins, setWins] = useState(0);
+
+    useEffect(()=>{
+        setLoading(true);
+        setGames([]);
+        setSumData(undefined);
+        setWins(0);
+        if(props.trigger) {
+            get_games(props.summoner, props.region, 0, 10).then(({summoner, games}) => {
+                let win = 0
+                games.forEach((d) => {
+                    for (let x = 0; x < d.info.participants.length; x++) {
+                        if (d["info"]["participants"][x]["summonerName"] === summoner.name && d["info"]["participants"][x]["win"]) win++;
+                    }
+                })
+                setGames(games)
+                setSumData(summoner);
+                setWins(win);
+                setLoading(false);
+
+            })
+        }
+    },[props.trigger])
 
     if(props.trigger && data){
         const icon = get_url("summoner_icon", (data.profileIconId + ".png"));
@@ -27,17 +49,17 @@ const  HomePopUp =  (props) => {
                             <div className="col-11">
                                 <h3 id="summoner_name">{data.name}</h3>
                             </div>
-                            <div>
-                                {/*TODO make graph of the last 10 to 20 games*/}
-                            </div>
                         </div>
                     </div>
                     <div className="HomePopUp_Matches">
                         <div className="HomePopUp_WinRate">
-                            <h1><kbd>how many wins in the last games</kbd></h1> {/*FIXME i have to put wincount in matches, don't know how, but if i use a second request (from an other file) it's too many requests*/}
+                            <h5>{wins}/{games.length} in the last games</h5>
+                            <div>
+                                <WinGraph wins={wins} loses={(games.length - wins)}/>
+                            </div>
                         </div>
                         <div className="HomePopUp_MatchHistory">
-                            <Matches puuid={data.puuid} summmoner={data.name} region={region} games={games_num} platform={props.region}/>
+                            <Matches summmoner={data.name} data={games} region={props.region}/>
                         </div>
                     </div>
                 </div>
@@ -68,7 +90,7 @@ const  HomePopUp =  (props) => {
                         <h3>{props.summoner}</h3>
                     </div>
                     <div>
-                        <h4>Summoner not found try another Region</h4> {/*TODO maybe autocheck other regions*/}
+                        <h4>Summoner not found try another Region</h4>
                     </div>
                 </div>
             </div>
@@ -79,5 +101,17 @@ const  HomePopUp =  (props) => {
     }
 };
 
+async function get_games(player, server, games_num_start, games_num_end, ){
+    const res1 = await axios.get(get_request("summoner_by_name", server, "platform", [player], "query"));
+    const summoner = res1.data;
+    const res2 = await axios.get(get_request("match_ids_by_puuid", get_region_from_platform(server), "region", [summoner.puuid, games_num_start, games_num_end], "query"))
+    const game_arr = res2.data
+    const games = [];
+    for (const game of game_arr) {
+        const g = await axios.get(get_request("match_by_id", get_region_from_platform(server), "region", [game], "query"));
+        games.push(g.data);
+    }
+    return {summoner, games};
+}
 
 export default HomePopUp;

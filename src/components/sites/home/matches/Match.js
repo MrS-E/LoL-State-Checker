@@ -1,16 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {get_request, get_url} from "../../../../other/js/links";
-import useFetch from "../../../../hooks/useFetch";
+import {get_url} from "../../../../other/js/links";
 import '../css/Match.css'
 import ChampPopUp from "../../champions/ChampPopUp";
 import HomePopUp from "../HomePopUp";
 import spacer1 from "../../../../other/files/spacer1.png";
 
-/*TODO wird irgendwie 4mal ausgeführt*/
 const Match = (props) => {
+    const data = props.data;
     const div = useRef(null);
-    const url = get_request("match_by_id",props.region,"region",[props.id],"query");
-    const {data,loading} = useFetch(url);
     const [champ_trigger, champ_changeTrigger] = useState(false);
     const [sum_trigger, sum_changeTrigger] = useState(false);
     const [summonerName_popup, changeSummonerName_popup] = useState("");
@@ -24,7 +21,7 @@ const Match = (props) => {
         }
     }, [localStorage.getItem('queues')])
 
-    useEffect(() => {
+    /*useEffect(() => {
 
         const handleResize = () => {
             console.log("resized")
@@ -38,9 +35,8 @@ const Match = (props) => {
             window.removeEventListener('resize', handleResize);
         };
 
-    });
+    });*/
 
-    if (loading) return <h6>Loading</h6>;
     if(data && queue) {
         const game={
             summoner_blue: [],
@@ -117,7 +113,7 @@ const Match = (props) => {
                     </div>
                 </div>
                 <ChampPopUp  trigger={champ_trigger} champ={game.champion} setTrigger={champ_changeTrigger}/>
-                <HomePopUp trigger={sum_trigger} setTrigger={sum_changeTrigger} summoner={summonerName_popup} region={props.platform}/>
+                <HomePopUp trigger={sum_trigger} setTrigger={sum_changeTrigger} summoner={summonerName_popup} region={props.region}/>
             </>
         );
     }

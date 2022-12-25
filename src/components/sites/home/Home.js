@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import './css/Home.css';
 import Searchbar from "./Searchbar";
 import HomePopUp from "./HomePopUp";
-import image from '../../../other/files/home_bg.jpg'; //TODO bg austauschen
+import image from '../../../other/files/home_bg.jpg';
 
 
 function Home() {
