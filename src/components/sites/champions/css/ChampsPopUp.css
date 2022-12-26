@@ -39,20 +39,10 @@
 .skin{
     width:11vw;
     margin-bottom: 1vh;
+    cursor: pointer;
 }
-.skin_sub{
-    display: none;
-    max-width:calc(11vw - 20px);
-    margin-left:10px;
-    color: chartreuse; /*TODO change color*/
-    font-weight: bolder;
-    text-align: center;
-    position: absolute;
-    word-wrap: break-word;
-    transform: translate(0,  -7vh); /*TODO i'm not sure if i like the hover effect (i don't like it), maybe clickable (name + big image) like spell would be better*/
-}
-.skin:hover + .skin_sub {
-    display: block;
+.skin_big{
+    width: 100%;
 }
 .row{
     margin-top: 0.3vh;
@@ -60,37 +50,39 @@
 .lore{
     font-size: small;
 }
-.col-2{
-    margin-right: 0.5vw;
+.stretch_div{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    margin-left: 1.75vw;
+    padding: 0;
+}
+.stretch_div:first-child{
+    margin-left: unset;
+    padding-left: unset;
+}
+.stretch_div:last-child{
+    margin-right: unset;
+    padding-right: unset;
 }
 .spell{
-    width: 5.5vw;
-}
-.spell:hover{
+    width: calc(100%/5);
     cursor: pointer;
-}
-.stretch_div{
-    display: flex;
-    justify-content: space-evenly;
+    padding-right: .4vw;
+    padding-left: .4vw;
 }
 .show_btn{
+    width: calc(50% - 1.75vw);
     height: 5.5vw;
     font-size: smaller;
-    margin-left: 1.75vw;
     text-align: center;
+    margin-left: 1.75vw;
 }
 
 @media (max-width: 1000px){
-    .stretch_div{
-        padding-right: 2vw;
-    }
     .spell_div{
-        margin-right: 0.05vw;
-    }
-}
-@media(max-width: 850px){
-    .skin:hover + .skin_sub {
-        display: none;
+        margin-right: 0.05vw;/*To add */
     }
 }
 @media (max-width: 450px){
@@ -98,7 +90,6 @@
         height: 7vh;
     }
 }
-
 @media (max-width: 350px){
     .show_btn{
         height: 10vh;

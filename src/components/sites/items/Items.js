@@ -139,7 +139,7 @@ String.prototype.splice = function(idx, rem, str) {
 
 export default Items;
 
-/* TODO evtl. remove this comment
+/*
 Tags;
 "Boots"
 "ManaRegen"
@@ -173,7 +173,6 @@ Tags;
 "GoldPer"
 "MagicResist"
 mit:
-
     if(data) {
         let i = []
         Object.values(data.data).forEach((d) => {

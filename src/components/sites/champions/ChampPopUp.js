@@ -112,40 +112,38 @@ const ChampPopUp = (props) => {
                                 </div>
                                 <div className="row">
                                     {champion.skins.map((x, i) => {
-                                        return(<div className="col-4" key={i}><img src={get_url("splash", (champion.id+"_"+x.num+".jpg"))} className="skin" alt={x.name}/><span className="skin_sub">{x.name}</span></div>);
+                                        return(<div className="col-4" key={i} onClick={()=>{changeSpellName(x.name);changeSpellDesc(<img src={get_url("splash", (champion.id+"_"+x.num+".jpg"))} className="skin_big" alt={x.name}/>);changeSpellTooltip(null)}}><img src={get_url("splash", (champion.id+"_"+x.num+".jpg"))} className="skin" alt={x.name}/></div>);
                                     })}
                                 </div>
                             </div>
                             <div className="col-6 ">
-                                <div className="row stretch_div">
-                                    <button className="col-5 show_btn"
+                                <div className="stretch_div">
+                                    <button className="show_btn"
                                             onClick={() => {changeSpellName("Stats");changeSpellDesc(
                                                 <Graph data={graph_data(champion)}/>
-                                            );}}>
+                                            );changeSpellTooltip(null);}}>
                                        Stats
                                     </button>
-                                    <button className="col-5 show_btn"
+                                    <button className="show_btn"
                                             onClick={() => {changeSpellName("");changeSpellDesc(
                                                 <table>
                                                     <tr><td><strong>Ally Tips</strong></td></tr>{champion.allytips.map((x,i)=>{return(<tr key={i}><td>{x}<hr/></td></tr>);})}
                                                     <tr><td><strong>Enemy Tips</strong></td></tr>{champion.enemytips.map((x,i)=>{return(<tr key={i}><td>{x}<hr/></td></tr>);})}
                                                 </table>
-                                            );}}>
+                                            );changeSpellTooltip(null);}}>
                                         Tips
                                     </button>
                                 </div>
-                                <div className="row stretch_div spell_div">
-                                    <div className="col-2" onClick={() => {changeSpellName(champion.passive.name);changeSpellDesc(champion.passive.description);changeSpellTooltip(null);changeSpellTooltip(champion.passive.tooltip)}}>
-                                        <img className="spell" alt={"spell_"+champion.passive.image.full} src={get_url("passiv", (champion.passive.image.full))}/>
-                                    </div>
+                                <div className="stretch_div">
+                                    <img className="spell" alt={"spell_"+champion.passive.image.full} src={get_url("passiv", (champion.passive.image.full))} onClick={() => {changeSpellName(champion.passive.name);changeSpellDesc(champion.passive.description);changeSpellTooltip(null);changeSpellTooltip(champion.passive.tooltip)}}/>
                                     {champion.spells.map((x,i) => {
                                         return(
-                                            <div key={i} className="col-2" onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);changeSpellTooltip(null);changeSpellTooltip(x.tooltip)}}>
-                                                <img className="spell" alt={"spell_"+x.image.full} src={get_url("spell", x.image.full)}/>
-                                            </div>
+                                            <img key={i+"_spell"} className="spell" alt={"spell_"+x.image.full} src={get_url("spell", x.image.full)} onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);changeSpellTooltip(null);changeSpellTooltip(x.tooltip)}}/>
                                         );
                                     })}
-                                    <div className="row">
+                                </div>
+                                <div className="stretch_div">
+                                    <div>
                                         <SpellDescription name={spellName} desc={spellDesc} tooltip={spellTooltip}/>
                                     </div>
                                 </div>
