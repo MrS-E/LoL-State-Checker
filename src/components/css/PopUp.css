@@ -19,9 +19,36 @@
 }
 .popup-inner .close-btn{
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 5px;
+    right: 5px;
 }
+
 .close-btn{
-    /*TODO make close button look nicer*/
+    visibility: hidden;
+}
+.close-btn:after{
+    visibility: visible;
+    display: inline-block;
+    background: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 50%;
+    height: 4vh;
+    width: 4vh;
+    content: "×";
+    font: 4vh sans-serif;
+    color: #24292E;
+    line-height: 4vh;
+    text-align: center;
+    vertical-align: center;
+    cursor: pointer;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+}
+.close-btn:hover:after {
+    background-color: #c9cacb;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+.close-btn:focus:after {
+    outline: 1px transparent;
 }
