@@ -168,8 +168,6 @@ String.prototype.splice = function(idx, rem, str) {
     return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem)); //gefunden auf https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index
 };
 
-//TODO evtl. toggle if inStore must be true
-
 export default Items;
 
 /*
