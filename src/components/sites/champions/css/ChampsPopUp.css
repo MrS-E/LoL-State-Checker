@@ -36,6 +36,12 @@
     color: white;
     height:10vmin;
 }
+.light_title{
+    color: black;
+}
+.dark_title{
+    color:white;
+}
 .skin{
     width:11vw;
     margin-bottom: 1vh;
@@ -59,12 +65,12 @@
     padding: 0;
 }
 .stretch_div:first-child{
-    margin-left: unset;
-    padding-left: unset;
+    margin-left: 0;
+    padding-left: 0;
 }
 .stretch_div:last-child{
-    margin-right: unset;
-    padding-right: unset;
+    margin-right: 0;
+    padding-right: 0;
 }
 .spell{
     width: calc(100%/5);

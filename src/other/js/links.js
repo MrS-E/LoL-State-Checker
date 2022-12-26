@@ -53,7 +53,6 @@ export function get_url(typ,add,lang){
     return url;
 }
 
-
 //API
 const routing_platform = {
     "BR1":"br1.api.riotgames.com", // Brazil

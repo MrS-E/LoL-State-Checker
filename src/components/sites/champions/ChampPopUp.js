@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import lightOrDarkImage from '@check-light-or-dark/image';
 import UseFetch from "../../../hooks/useFetch";
-import './css/ChampsPopUp.css'
-import '../../css/PopUp.css'
 import SpellDescription from "./SpellDescription";
 import Graph from "./Graph";
 import {get_url} from "../../../other/js/links";
+import './css/ChampsPopUp.css'
+import '../../css/PopUp.css'
 
 const graph_data = (data) => {
     const stats = data.stats;
@@ -88,20 +89,31 @@ const ChampPopUp = (props) => {
     const [spellName, changeSpellName] = useState("");
     const [spellDesc, changeSpellDesc] = useState("");
     const [spellTooltip, changeSpellTooltip] = useState("");
+    const [light, changeLight] = useState(null);
+
     let champion = props.champ;
     if (data) champion = Object.values(data?.data)[0];
+
+    useEffect(() => {
+        lightOrDarkImage({
+            image: get_url("splash",(champion.id+"_0.jpg")),
+        }).then(res => {
+            changeLight(res);
+        });
+    }, [get_url("splash",(champion.id+"_0.jpg"))]);
+
     if(props.trigger && data){
         return(
             <div className="popup">
                 <div className="popup-inner champ_height_popup">
                     <div>
-                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");changeSpellTooltip(null)}}>close</button>
+                        <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");changeSpellTooltip(null); changeLight(null);}}>close</button>
                     </div>
                     <div>
                         <div>
-                            <img className="main_img" alt={"splash_"+champion.id} src={get_url("splash",(champion.id+"_0.jpg"))}/>
-                            <h2 className="main_title">{champion.name}</h2>
-                            <h3 className="main_undertitle">{champion.title}</h3>
+                            <img className={"main_img"} alt={"splash_"+champion.id} src={get_url("splash",(champion.id+"_0.jpg"))}/>
+                            <h2 className={"main_title " + (light+"_title")}>{champion.name}</h2>
+                            <h3 className={"main_undertitle " + (light+"_title")}>{champion.title}</h3>
                         </div>
                         <div className="row">
                             <div className="col-6">
@@ -153,12 +165,13 @@ const ChampPopUp = (props) => {
                 </div>
             </div>
         );
-    }else if(props.trigger && loading){
+    }
+    else if(props.trigger && loading){
         return(
         <div className="popup">
             <div className="popup-inner">
                 <div>
-                    <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");changeSpellTooltip(null)}}>close</button>
+                    <button className="close-btn" onClick={() => {props.setTrigger(false);changeSpellDesc(" ");changeSpellName(" ");changeSpellTooltip(null);changeLight(null);}}>close</button>
                     <h3>Champion</h3>
                 </div>
                 <div>
@@ -167,7 +180,8 @@ const ChampPopUp = (props) => {
             </div>
         </div>
         );
-    }else{
+    }
+    else{
         return "";
     }
 };
