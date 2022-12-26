@@ -53,7 +53,7 @@ const  HomePopUp =  (props) => {
                     </div>
                     <div className="HomePopUp_Matches">
                         <div className="HomePopUp_WinRate">
-                            <h5>{wins}/{games.length} in the last games</h5>
+                            <h5>{wins}/{games.length} wins in the last games</h5>
                             <div>
                                 <WinGraph wins={wins} loses={(games.length - wins)}/>
                             </div>
