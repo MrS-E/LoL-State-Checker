@@ -35,7 +35,7 @@ const  HomePopUp =  (props) => {
     },[props.trigger])
 
     if(props.trigger && data){
-        const icon = get_url("summoner_icon", (data.profileIconId + ".png"));
+        const icon = get_url("summoner_icon", [data.profileIconId]);
         return(
             <div className="popup">
                 <div className="popup-inner home_height_popup">

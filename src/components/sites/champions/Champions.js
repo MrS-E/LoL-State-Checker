@@ -25,7 +25,7 @@ function Champions() {
                 {Object.values(data?.data).map((data, i)=>{
                     return(
                         <div key={i} id={data.key} className="col-1" onClick={() => {changeTrigger(true);changeChamp(data.id);}}>
-                            <img className="col-12"  src={get_url("icon",data.image.full)} alt={data.name}/>
+                            <img className="col-12"  src={get_url("icon",[data.image.full])} alt={data.name}/>
                             <p>{data.name}</p>
                         </div>
                     );

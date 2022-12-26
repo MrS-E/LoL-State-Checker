@@ -84,7 +84,7 @@ const graph_data = (data) => {
 }
 
 const ChampPopUp = (props) => {
-    const url = get_url("champ", (props.champ + ".json"));
+    const url = get_url("champ", [props.champ]);
     const {data, loading} = UseFetch(url);
     const [spellName, changeSpellName] = useState("");
     const [spellDesc, changeSpellDesc] = useState("");
@@ -96,11 +96,11 @@ const ChampPopUp = (props) => {
 
     useEffect(() => {
         lightOrDarkImage({
-            image: get_url("splash",(champion.id+"_0.jpg")),
+            image: get_url("splash",[champion.id,0]),
         }).then(res => {
             changeLight(res);
         });
-    }, [get_url("splash",(champion.id+"_0.jpg"))]);
+    }, [get_url("splash",[champion.id,0])]);
 
     if(props.trigger && data){
         return(
@@ -111,7 +111,7 @@ const ChampPopUp = (props) => {
                     </div>
                     <div>
                         <div>
-                            <img className={"main_img"} alt={"splash_"+champion.id} src={get_url("splash",(champion.id+"_0.jpg"))}/>
+                            <img className={"main_img"} alt={"splash_"+champion.id} src={get_url("splash",[champion.id,0])}/>
                             <h2 className={"main_title " + (light+"_title")}>{champion.name}</h2>
                             <h3 className={"main_undertitle " + (light+"_title")}>{champion.title}</h3>
                         </div>
@@ -124,7 +124,7 @@ const ChampPopUp = (props) => {
                                 </div>
                                 <div className="row">
                                     {champion.skins.map((x, i) => {
-                                        return(<div className="col-4" key={i} onClick={()=>{changeSpellName(x.name);changeSpellDesc(<img src={get_url("splash", (champion.id+"_"+x.num+".jpg"))} className="skin_big" alt={x.name}/>);changeSpellTooltip(null)}}><img src={get_url("splash", (champion.id+"_"+x.num+".jpg"))} className="skin" alt={x.name}/></div>);
+                                        return(<div className="col-4" key={i} onClick={()=>{changeSpellName(x.name);changeSpellDesc(<img src={get_url("splash", [champion.id,x.num])} className="skin_big" alt={x.name}/>);changeSpellTooltip(null)}}><img src={get_url("splash", [champion.id,x.num])} className="skin" alt={x.name}/></div>);
                                     })}
                                 </div>
                             </div>
@@ -139,18 +139,22 @@ const ChampPopUp = (props) => {
                                     <button className="show_btn"
                                             onClick={() => {changeSpellName("");changeSpellDesc(
                                                 <table>
-                                                    <tr><td><strong>Ally Tips</strong></td></tr>{champion.allytips.map((x,i)=>{return(<tr key={i}><td>{x}<hr/></td></tr>);})}
-                                                    <tr><td><strong>Enemy Tips</strong></td></tr>{champion.enemytips.map((x,i)=>{return(<tr key={i}><td>{x}<hr/></td></tr>);})}
+                                                    <tbody>
+                                                    <tr><td><strong>Ally Tips</strong></td></tr>
+                                                    {champion.allytips.map((x,i)=>{return(<tr key={i}><td>{x}<hr/></td></tr>);})}
+                                                    <tr><td><strong>Enemy Tips</strong></td></tr>
+                                                    {champion.enemytips.map((x,i)=>{return(<tr key={i}><td>{x}<hr/></td></tr>);})}
+                                                    </tbody>
                                                 </table>
                                             );changeSpellTooltip(null);}}>
                                         Tips
                                     </button>
                                 </div>
                                 <div className="stretch_div">
-                                    <img className="spell" alt={"spell_"+champion.passive.image.full} src={get_url("passiv", (champion.passive.image.full))} onClick={() => {changeSpellName(champion.passive.name);changeSpellDesc(champion.passive.description);changeSpellTooltip(null);changeSpellTooltip(champion.passive.tooltip)}}/>
+                                    <img className="spell" alt={"spell_"+champion.passive.image.full} src={get_url("passiv", [champion.passive.image.full])} onClick={() => {changeSpellName(champion.passive.name);changeSpellDesc(champion.passive.description);changeSpellTooltip(null);changeSpellTooltip(champion.passive.tooltip)}}/>
                                     {champion.spells.map((x,i) => {
                                         return(
-                                            <img key={i+"_spell"} className="spell" alt={"spell_"+x.image.full} src={get_url("spell", x.image.full)} onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);changeSpellTooltip(null);changeSpellTooltip(x.tooltip)}}/>
+                                            <img key={i+"_spell"} className="spell" alt={"spell_"+x.image.full} src={get_url("spell", [x.image.full])} onClick={() => {changeSpellName(x.name);changeSpellDesc(x.description);changeSpellTooltip(null);changeSpellTooltip(x.tooltip)}}/>
                                         );
                                     })}
                                 </div>

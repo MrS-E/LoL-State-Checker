@@ -67,11 +67,11 @@ const Match = (props) => {
                         {/*<h6>{data.info.gameMode}</h6>*/}
                         <h6 className="title">{search.description.replace(" games", "").replace("5v5 ", "")}</h6>
                         <p className="date">{new Date(data.info.gameEndTimestamp).toLocaleDateString('de-DE', {year: 'numeric', month: 'short', day: 'numeric'}) /*Date from Unix Timestamp*/}</p>
-                        <img className="map" alt={"map"+data.info.mapId} src={get_url("map",("map"+data.info.mapId+".png"))}/>
+                        <img className="map" alt={"map"+data.info.mapId} src={get_url("map",[data.info.mapId])}/>
                     </div>
                     <div className="stats">
                         <div className="items_div">
-                            {game.items.map((x, id)=>{if(x<1001)return(<img className="item" key={id} src={spacer1} alt={"item_"+x}/>);return(<img className="item" key={id} src={get_url("items",  (x + ".png"))} alt={"item_"+x}/>);})}
+                            {game.items.map((x, id)=>{if(x<1001)return(<img className="item" key={id} src={spacer1} alt={"item_"+x}/>);return(<img className="item" key={id} src={get_url("items",  [(x + ".png")])} alt={"item_"+x}/>);})}
                         </div>
                         <div className="stats_text">
                             <span><strong>DMG</strong><br/> {game.totalDamage}</span><br/>
@@ -81,7 +81,7 @@ const Match = (props) => {
                         </div>
                     </div>
                     <div className="champ">
-                        <img src={get_url("icon", (game.champion + ".png"))} className="rounded-circle icon champ_img" alt={game.champion} onClick={()=>champ_changeTrigger(true)}/>
+                        <img src={get_url("icon", [(game.champion + ".png")])} className="rounded-circle icon champ_img" alt={game.champion} onClick={()=>champ_changeTrigger(true)}/>
                         <div>
                             <Kill game={game}/>
                             <p className="KDA"><strong>KDA</strong><br/>{game.kda[0]}/{game.kda[1]}/{game.kda[2]}</p>
@@ -89,10 +89,10 @@ const Match = (props) => {
                     </div>
                     <div className="summoner">
                         <div className="sum_blue">
-                            {game.summoner_blue.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_blue"} className="sum"><img src={get_url("summoner_icon",(x[1]+".png"))} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
+                            {game.summoner_blue.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_blue"} className="sum"><img src={get_url("summoner_icon",[x[1]])} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
                         </div>
                         <div className="sum_red">
-                            {game.summoner_red.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_red"} className="sum"><img src={get_url("summoner_icon",(x[1]+".png"))} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
+                            {game.summoner_red.map((x, i)=>{return(<div className="summoner_point" onClick={()=>{sum_changeTrigger(true);changeSummonerName_popup(x[0]);}}><p key={i+"_red"} className="sum"><img src={get_url("summoner_icon",[x[1]])} className="rounded-circle icon img" alt={x[1]}/>{x[0]}</p></div>)})}
                         </div>
                     </div>
                 </div>

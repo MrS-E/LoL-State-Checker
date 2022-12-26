@@ -50,7 +50,7 @@ async function all_skins_select(champs){
     if(champs !== undefined) {
         let skins = []
         for (const d of Object.keys(champs.data)) {
-            await axios.get(get_url("champ", d + ".json")).then(
+            await axios.get(get_url("champ", [d])).then(
                 (res) => {
                     for (const x of res.data.data[d].skins){
                         if(x.name!=="default"){
@@ -68,13 +68,13 @@ async function all_skins_select(champs){
 
 async function select_skin(champs){
     if(champs !== undefined) {
-        const champion = await axios.get(get_url("champ", (Object.keys(champs.data)[random(Object.keys(champs.data).length - 1, 0)] + ".json"))).then(
+        const champion = await axios.get(get_url("champ", [Object.keys(champs.data)[random(Object.keys(champs.data).length - 1, 0)]])).then(
             (res) => {
                 return res.data.data;
             }
         )
         const skin = champion[Object.keys(champion)[0]].skins[random(champion[Object.keys(champion)[0]].skins.length-2,1)];
-        const img = get_url("splash", (Object.keys(champion)[0]+"_"+skin.num+".jpg"));
+        const img = get_url("splash", [Object.keys(champion)[0],skin.num]);
         const skin_name = skin.name;
         return([skin_name, img]);
     }

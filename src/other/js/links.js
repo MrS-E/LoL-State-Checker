@@ -5,50 +5,64 @@ const prefix = {
     ddragon:"http://ddragon.leagueoflegends.com/cdn/",
 }
 const main = {
-    "icon" : [prefix.ddragon,0,"/img/champion/"],
-    "spell" : [prefix.ddragon,0,"/img/spell/"],
-    "passiv" : [prefix.ddragon,0,"/img/passive/"],
-    "summoner_icon" : [prefix.ddragon,0,"/img/profileicon/"],
-    "items" : [prefix.ddragon,0,"/img/item/"],
-    "map" : [prefix.ddragon,"6.8.1/img/map/"], //no version
-    "splash" : [prefix.ddragon,"img/champion/splash/"], //no version
+    "icon" : [prefix.ddragon,0,"/img/champion/",2],
+    "spell" : [prefix.ddragon,0,"/img/spell/",2],
+    "passiv" : [prefix.ddragon,0,"/img/passive/",2],
+    "summoner_icon" : [prefix.ddragon,0,"/img/profileicon/",2,".png"],
+    "items" : [prefix.ddragon,0,"/img/item/",2],
+    "map" : [prefix.ddragon,"6.8.1/img/map/map",2,".png"], //no version
+    "splash" : [prefix.ddragon,"img/champion/splash/",2,"_",3,".jpg"], //no version
 
-    "items_json" : [prefix.ddragon,0,"/data/",0,"/item.json"], //with language (default en_US)
-    "champ" : [prefix.ddragon,0,"/data/",0,"/champion/"],
-    "champions" : [prefix.ddragon,0,"/data/",0,"/champion.json"],
+    "items_json" : [prefix.ddragon,0,"/data/",1,"/item.json"], //with language (default en_US)
+    "champ" : [prefix.ddragon,0,"/data/",1,"/champion/",2,".json"],
+    "champions" : [prefix.ddragon,0,"/data/",1,"/champion.json"],
 
     "queueID" : ["https://static.developer.riotgames.com/docs/lol/queues.json"],
     "version" : ["https://ddragon.leagueoflegends.com/api/versions.json"],
     "map_json" : ["https://static.developer.riotgames.com/docs/lol/maps.json"],
 }
 
-export function get_url(typ,add,lang){
+export function get_url(typ, add, lang){
     let url="";
-    const length = main[typ].length;
-    url += main[typ][0];
-    if(length===2){
-        url += main[typ][1];
-    }
-    if(length>=3){
-        try{
-            url += localStorage.getItem('version');
-        }catch (e) {
-            url += "12.21.1";
+    let stop = false;
+    for(const thing of main[typ]){
+        switch (thing){
+            case 0:
+                try{
+                    url += localStorage.getItem('version');
+                }catch (e) {
+                    url += "12.21.1";
+                }
+                break;
+            case 1:
+                if(lang===undefined){
+                    url += "en_US";
+                }else{
+                    url += language[lang];
+                }
+                break;
+            case 2:
+                if(add[0]){
+                    url += add[0];
+                }else{
+                    stop=true;
+                }
+                break;
+            case 3:
+                if(add[1].toString()){
+                    url += add[1].toString();
+                }else{
+                    stop=true;
+                }
+                break;
+            default:
+                url += thing;
+                break;
         }
-        url += main[typ][2];
-    }
-    if(length>=5){
-        if(main[typ][3]===0){
-            if(lang===undefined){
-                url += "en_US";
-            }else{
-                url += language[lang];
-            }
+        if(stop){
+            url=undefined;
+            break;
         }
-        url+=main[typ][4];
-    }
-    if(add!==undefined){
-        url += add;
     }
     return url;
 }

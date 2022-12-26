@@ -17,7 +17,7 @@ function App() {
                             <NavLink eventKey="1" as={Link} to="/">Home</NavLink>
                             <NavLink eventKey="2" as={Link} to="/champions">Champions</NavLink>
                             <NavLink eventKey="3" as={Link} to="/items">Items</NavLink>
-                            <NavLink eventKey="3" as={Link} to="/quitz">Quitz</NavLink>
+                            <NavLink eventKey="4" as={Link} to="/quitz">Quitz</NavLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

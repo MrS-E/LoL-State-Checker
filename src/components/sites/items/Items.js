@@ -128,7 +128,7 @@ function gen(typ, data, setTrigger, changeItem){
 
     Object.keys(item).sort().forEach((d, key) => {
         let split = d.search(/.[A-Z]/g)<0 ? 0 : d.search(/.[A-Z]/g)+1;
-        output.push(<div key={key+"_item"}><h6>{d.splice(split,0," ")}</h6>{item[d].map((x, key)=>{return(<img key={key} onClick={()=>{setTrigger(true); changeItem(x);}} className="item_img" src={get_url("items",(data.data[x].image.full))} alt={data.data[x].name +" "+ x}/>);})}</div>);
+        output.push(<div key={key+"_item"}><h6>{d.splice(split,0," ")}</h6>{item[d].map((x, key)=>{return(<img key={key} onClick={()=>{setTrigger(true); changeItem(x);}} className="item_img" src={get_url("items",[data.data[x].image.full])} alt={data.data[x].name +" "+ x}/>);})}</div>);
     });
     return output
 }
@@ -136,6 +136,8 @@ function gen(typ, data, setTrigger, changeItem){
 String.prototype.splice = function(idx, rem, str) {
     return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem)); //gefunden auf https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index
 };
+
+//TODO evtl. toggle if inStore must be true
 
 export default Items;
 

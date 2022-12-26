@@ -49,7 +49,7 @@ async function select_champ(champs){
     if(champs !== undefined) {
         champs = champs.data
         const champion = Object.keys(champs)[random(Object.keys(champs).length,0)];
-        const img = get_url("splash",(champion+"_0.jpg"));
+        const img = get_url("splash",[champion,0]);
         return [champion, img, Object.keys(champs)];
     }else{
         return ["","", []];

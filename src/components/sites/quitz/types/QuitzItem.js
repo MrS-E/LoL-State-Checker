@@ -68,7 +68,7 @@ function item(items, keys){
         }
         if (!Object.keys(items.data[num]).includes("requiredChampion") && !Object.keys(items.data[num]).includes("requiredAlly")) {
             check = items.data[num].name;
-            img = get_url("items", items.data[num].image.full)
+            img = get_url("items", [items.data[num].image.full])
         }else{
             return item(items);
         }
