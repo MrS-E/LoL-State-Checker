@@ -6,6 +6,11 @@ import ItemsPopUp from "./ItemsPopUp";
 function Items(){
     const [data, changeData] = useState(undefined);
     const [loading, changeLoading] = useState(false);
+    const [typ, changeTyp] = useState(0);
+    const [trigger, setTrigger] = useState(false);
+    const [item,changeItem] = useState("")
+    const [purchasable, setPurchasable] = useState(true);
+
     useEffect(()=> {
         try {
             changeData(JSON.parse(localStorage.getItem('items')));
@@ -14,9 +19,6 @@ function Items(){
         }
     }, [localStorage.getItem('items')])
 
-    const [typ, changeTyp] = useState(0);
-    const [trigger, setTrigger] = useState(false);
-    const [item,changeItem] = useState("")
     if(loading) return <h1>Loading</h1>;
     if(data) {
         return (
@@ -25,15 +27,18 @@ function Items(){
                     <h1>Items Page {data.version}</h1>
                     <hr/>
                     <div className="items_input">
-                        Sort by:
+                        Sort by: <br/>
                         <input type="radio" id="tags" value="tags" name="sort" defaultChecked onClick={()=>changeTyp(0)}/>
                         <label>Tags</label>
                         <input type="radio" id="alph" value="alph" name="sort" onClick={()=>changeTyp(1)}/>
                         <label>Alphabet</label>
+                        <br/>
+                        <input type="checkbox" defaultChecked onClick={() => setPurchasable(previousState => !previousState)}/>
+                        <label>only purchasable</label>
                     </div>
                     <div className="items">
                         {
-                            gen(typ, data, setTrigger, changeItem).map(d=>d)
+                            gen(typ, data, setTrigger, changeItem, purchasable).map(d=>d)
                         }
                     </div>
                 </div>
@@ -45,7 +50,7 @@ function Items(){
     }
 }
 
-function get_items_by_tags(data){
+function get_items_by_tags(data, purchasable){
     const items_by_tag = {
         Boots: [],
         ManaRegen: [],
@@ -79,14 +84,25 @@ function get_items_by_tags(data){
         GoldPer: [],
         MagicResist: [],
     }
-    Object.keys(data.data).forEach((d)=>{
-        let keys = Object.keys(data.data[d])
-        if(!keys.includes("requiredChampion")&&!keys.includes("requiredAlly")) {
-            data.data[d].tags.forEach((tag) => {
-                items_by_tag[tag].push(d);
-            })
-        }
-    })
+    if(purchasable) {
+        Object.keys(data.data).forEach((d) => {
+            let keys = Object.keys(data.data[d])
+            if (!keys.includes("requiredChampion") && !keys.includes("requiredAlly") && !keys.includes("inStore")) {
+                data.data[d].tags.forEach((tag) => {
+                    items_by_tag[tag].push(d);
+                })
+            }
+        })
+    }else{
+        Object.keys(data.data).forEach((d)=>{
+            let keys = Object.keys(data.data[d])
+            if (!keys.includes("requiredChampion") && !keys.includes("requiredAlly")) {
+                data.data[d].tags.forEach((tag) => {
+                    items_by_tag[tag].push(d);
+                })
+            }
+        })
+    }
     Object.keys(items_by_tag).forEach(t=>{
         items_by_tag[t] = [...new Set(items_by_tag[t])];
     })
@@ -94,16 +110,23 @@ function get_items_by_tags(data){
     return items_by_tag;
 }
 
-function get_items_by_letter(data){
+function get_items_by_letter(data, purchasable){
     const items={
-         "" : [],
     };
     let items_temp=[];
-    Object.keys(data.data).forEach((d)=> {
-        if (!Object.keys(data.data[d]).includes("requiredChampion") && !Object.keys(data.data[d]).includes("requiredAlly")) {
-            items_temp.push([data.data[d].name, d]);
-        }
-    })
+    if(purchasable) {
+        Object.keys(data.data).forEach((d) => {
+            if (!Object.keys(data.data[d]).includes("requiredChampion") && !Object.keys(data.data[d]).includes("requiredAlly") && !Object.keys(data.data[d]).includes("inStore")) {
+                items_temp.push([data.data[d].name, d]);
+            }
+        })
+    }else{
+        Object.keys(data.data).forEach((d) => {
+            if (!Object.keys(data.data[d]).includes("requiredChampion") && !Object.keys(data.data[d]).includes("requiredAlly")) {
+                items_temp.push([data.data[d].name, d]);
+            }
+        })
+    }
     items_temp =  [...new Set(items_temp.sort((a,b)=>{
         if(a[0]<b[0]){
             return -1;
@@ -113,17 +136,25 @@ function get_items_by_letter(data){
             return 0;
         }
     }))]
-    items_temp.forEach((d)=>items[""].push(d[1]));
+    items_temp.forEach((d)=>{
+        if(Object.keys(items).includes(d[0][0])){
+            items[d[0][0]].push(d[1])
+        }else{
+            items[d[0][0]] = [];
+            items[d[0][0]].push(d[1])
+        }
+    });
+
     return items;
 }
 
-function gen(typ, data, setTrigger, changeItem){
+function gen(typ, data, setTrigger, changeItem, purchasable){
     let item;
     let output = [];
     if (typ === 0) {
-        item = get_items_by_tags(data);
+        item = get_items_by_tags(data, purchasable);
     } else if (typ === 1) {
-        item = get_items_by_letter(data);
+        item = get_items_by_letter(data, purchasable);
     }
 
     Object.keys(item).sort().forEach((d, key) => {
