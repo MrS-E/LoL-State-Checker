@@ -4,7 +4,7 @@ import Champions from "./components/sites/champions/Champions";
 import Home from "./components/sites/home/Home";
 import Items from "./components/sites/items/Items";
 import {Nav, Navbar, NavLink} from "react-bootstrap";
-import Quitz from "./components/sites/quitz/Quitz";
+import Quiz from "./components/sites/quitz/Quiz";
 
 function App() {
     return (
@@ -25,7 +25,7 @@ function App() {
                     <Switch>
                         <Route path='/champions' component={Champions}/>
                         <Route path='/items' component={Items}/>
-                        <Route path='/quiz' component={Quitz}/>
+                        <Route path='/quiz' component={Quiz}/>
                         <Route exact path='/' component={Home}/>
                     </Switch>
                 </div>

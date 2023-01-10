@@ -1,10 +1,10 @@
 import React, {useRef} from 'react';
 import {get_url} from "../../../../other/js/links";
-import {random} from "../Quitz";
+import {random} from "../Quiz";
 import '../css/QuitzItem.css';
 
 
-function QuitzItem(props) {
+function QuizItem(props) {
     const ans = useRef(null);
     const keys = sort_items_alphabet(JSON.parse(localStorage.getItem('items')));
     const items = JSON.parse(localStorage.getItem('items'));
@@ -78,4 +78,4 @@ function item(items, keys){
     }
 }
 
-export default QuitzItem;
+export default QuizItem;

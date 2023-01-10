@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import './css/Quitz.css'
-import QuitzItem from "./types/QuitzItem";
-import QuitzSkin from "./types/QuitzSkin";
-import QuitzChampionSplash from "./types/QuitzChampionSplash";
+import QuizItem from "./types/QuizItem";
+import QuizSkin from "./types/QuizSkin";
+import QuizChampionSplash from "./types/QuizChampionSplash";
 
-function Quitz() {
+function Quiz() {
     const [output, changeOutput] = useState([]);
     return (
         <div className={"quitz"}>
@@ -40,7 +40,7 @@ function choose(changeOutput, output){
 function splash(changeOutput, output){
     return(
         <>
-            <QuitzChampionSplash output={output} changeOutput={changeOutput}/>
+            <QuizChampionSplash output={output} changeOutput={changeOutput}/>
         </>
     )
 }
@@ -48,7 +48,7 @@ function splash(changeOutput, output){
 function skin(changeOutput,output){
  return(
      <>
-        <QuitzSkin output={output} changeOutput={changeOutput}/>
+        <QuizSkin output={output} changeOutput={changeOutput}/>
      </>
  );
 }
@@ -56,7 +56,7 @@ function skin(changeOutput,output){
 function item(changeOutput, output){
     return(
         <>
-            <QuitzItem changeOutput={changeOutput} output={output}/>
+            <QuizItem changeOutput={changeOutput} output={output}/>
         </>
     );
 }
@@ -73,4 +73,4 @@ function spell(changeOutput, output){
 export function random(max, min){
     return Math.floor(Math.random() * max) + min;
 }
-export default Quitz;
+export default Quiz;

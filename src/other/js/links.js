@@ -1,6 +1,35 @@
 import {api_key} from "./key";
 
-const language = {}
+const language = {
+    "CZECH":"cs_CZ",
+    "GREEK":"el_GR",
+    "POLISH":"pl_PL",
+    "ROMANIAN":"ro_RO",
+    "HUNGARIAN":"hu_HU",
+    "GERMAN":"de_DE",
+    "ITALIAN":"it_IT",
+    "FRENCH":"fr_FR",
+    "JAPANESE":"ja_JP",
+    "KOREAN":"ko_KR",
+    "PORTUGUESE":"pt_BR",
+    "RUSSIAN":"ru_RU",
+    "TURKISH":"tr_TR",
+    "MALAY":"Ms_MY",
+    "THAI":"TH_TH",
+    "VIETNAMESE":"vn_VN",
+    "INDONESIAN":"id_ID",
+    "ENGLISH_UK":"en_GB",
+    "ENGLISH_AU":"en_AU",
+    "ENGLISH_PH":"en_PH",
+    "ENGLISH_SG":"en_SG",
+    "ENGLISH":"en_US",
+    "CHINESE_MY":"zh_MY",
+    "CHINESE_CN":"zh_CN",
+    "CHINESE_TW":"zh_TW",
+    "SPANISH_MX":"es_MX",
+    "SPANISH_AR":"es_AR",
+    "SPANISH":"es_ES",
+}
 const prefix = {
     ddragon:"http://ddragon.leagueoflegends.com/cdn/",
 }
@@ -38,7 +67,7 @@ export function get_url(typ, add, lang){
                 if(lang===undefined){
                     url += "en_US";
                 }else{
-                    url += language[lang];
+                    url += language[lang.toUpperCase()];
                 }
                 break;
             case 2:

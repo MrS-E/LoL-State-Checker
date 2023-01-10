@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {random} from "../Quitz";
+import {random} from "../Quiz";
 import {get_url} from "../../../../other/js/links";
 import "../css/QuitzChampionSplash.css"
 
-function QuitzChampionSplash(props) {
+function QuizChampionSplash(props) {
     const ans = useRef(null);
     const champs = JSON.parse(localStorage.getItem('champions'));
     const [champion, changeChampion] = useState(null);
@@ -19,7 +19,7 @@ function QuitzChampionSplash(props) {
     }, [props.output])
 
     const handleClick = () => {
-        if(ans.current.value === champion){
+        if(ans.current.value.toUpperCase() === champion.toUpperCase()){
             props.changeOutput(oldArray => [[ans.current.value, img, champion, "skin", true], ...oldArray]);
         }else{
             props.changeOutput(oldArray => [[ans.current.value, img, champion, "skin", false], ...oldArray]);
@@ -56,4 +56,4 @@ async function select_champ(champs){
     }
 }
 
-export default QuitzChampionSplash;
+export default QuizChampionSplash;

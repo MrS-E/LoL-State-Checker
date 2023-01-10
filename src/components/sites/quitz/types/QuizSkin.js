@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {random} from "../Quitz";
+import {random} from "../Quiz";
 import {get_url} from "../../../../other/js/links";
 import axios from "axios";
 import "../css/QuitzSkin.css"
 
-function QuitzSkin(props) {
+function QuizSkin(props) {
     const ans = useRef(null);
     const champs = JSON.parse(localStorage.getItem('champions'));
     const [skin, changeSkin] = useState(null);
@@ -22,7 +22,7 @@ function QuitzSkin(props) {
     }, [props.output])
 
     const handleClick = () => {
-        if(ans.current.value === skin){
+        if(ans.current.value.toUpperCase() === skin.toUpperCase()){
             props.changeOutput(oldArray => [[ans.current.value, img, skin, "skin", true], ...oldArray]);
         }else{
             props.changeOutput(oldArray => [[ans.current.value, img, skin, "skin", false], ...oldArray]);
@@ -80,4 +80,4 @@ async function select_skin(champs){
     }
 }
 
-export default QuitzSkin;
+export default QuizSkin;
